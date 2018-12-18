@@ -48,13 +48,18 @@
                     </Ellipse>
                 </Grid>
 
-                <TextBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
-                         Margin="{StaticResource MediumTopMargin}"
-                         Header="Your name"
-                         HorizontalAlignment="Stretch"
-                         PlaceholderText="" 
-                         InputScope="PersonalFullName">
-                </TextBox>
+                <AutoSuggestBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
+                                ItemsSource="{Binding DonationNameAutoSuggestList, Mode=OneWay}"
+                                Margin="{StaticResource MediumTopMargin}"
+                                Header="Your name"
+                                HorizontalAlignment="Stretch"
+                                PlaceholderText="">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="TextChanged">
+                            <core:InvokeCommandAction Command="{Binding PopulateAutoSuggestNamesCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </AutoSuggestBox>
                 
                 <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
                          Margin="{StaticResource SmallTopMargin}"

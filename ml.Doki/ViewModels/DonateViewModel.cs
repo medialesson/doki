@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
@@ -42,7 +44,15 @@ namespace ml.Doki.ViewModels
                 AssignAvatarByName(value);
             }
         }
-        #endregion 
+
+
+        private ObservableCollection<string> _donationNameAutoSuggestList;
+        public ObservableCollection<string> DonationNameAutoSuggestList
+        {
+            get => _donationNameAutoSuggestList;
+            set => Set(ref _donationNameAutoSuggestList, value);
+        }
+        #endregion
 
         #region Commands
 
@@ -54,15 +64,21 @@ namespace ml.Doki.ViewModels
 
         public ICommand OpenConfigurationsCommand { get; }
 
+        public ICommand PopulateAutoSuggestNamesCommand { get; }
+
         #endregion
 
         public DonateViewModel()
         {
+            // Set properties
+            DonationNameAutoSuggestList = new ObservableCollection<string>();
+
             // Set commands
             DonateCommand = new RelayCommand(Donate);
             FetchAvatarCommand = new RelayCommand<string>(AssignAvatarByName);
             ChooseFromContactsCommand = new RelayCommand(ChooseFromContacts);
             OpenConfigurationsCommand = new RelayCommand(OpenConfigurations);
+            PopulateAutoSuggestNamesCommand = new RelayCommand(PopulateAutoSuggestNames);
         }
 
         public async void Donate()
@@ -167,6 +183,17 @@ namespace ml.Doki.ViewModels
                 };
 
                 await dialog.ShowAsync();
+            }
+        }
+
+        public async void PopulateAutoSuggestNames()
+        {
+            DonationNameAutoSuggestList.Clear();
+
+            if(CurrentDonationName.Length >= 3)
+            {
+                var list = (await Singleton<ContactService>.Instance.SearchContactsByNameAsync(CurrentDonationName, true)).ToList();
+                list.ForEach(c => DonationNameAutoSuggestList.Add(c.DisplayName));
             }
         }
 

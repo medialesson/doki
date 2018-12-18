@@ -44,6 +44,20 @@ namespace ml.Doki.Services
             return selectedContact;
         }
 
+        public async Task<IList<Contact>> SearchContactsByNameAsync(string query, bool distinct = false)
+        {
+            var contactStore = await ContactManager.RequestStoreAsync();
+            var contacts = await contactStore.FindContactsAsync();
+
+            var results = contacts.Where(c =>
+                c.DisplayName.ToLower().Contains(query.ToLower()));
+
+            if (distinct)
+                results = results.Distinct();
+
+            return results.ToList();
+        }
+
         public async Task<BitmapImage> LoadContactAvatarToBitmapAsync(Contact contact)
         {
             if (contact?.SourceDisplayPicture != null)
