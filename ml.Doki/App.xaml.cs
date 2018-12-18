@@ -1,5 +1,5 @@
 ﻿using System;
-
+using ml.Doki.Helpers;
 using ml.Doki.Services;
 
 using Windows.ApplicationModel.Activation;
@@ -30,6 +30,8 @@ namespace ml.Doki
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            await Singleton<ContactService>.Instance.PromptForPermissionsAsync();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)

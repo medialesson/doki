@@ -14,13 +14,19 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            <Ellipse Height="60" Width="60"
-                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Ellipse.Fill>
-                                    <SolidColorBrush Color="{StaticResource SystemAccentColorLight1}"/>
-                                    <!--<ImageBrush ImageSource="{Binding AvatarSource}"/>-->
-                                </Ellipse.Fill>
-                            </Ellipse>
+                            <Grid Height="55" Width="55" CornerRadius="360">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{StaticResource SystemBaseLowColor}"/>
+                                </Grid.Background>
+
+                                <SymbolIcon Symbol="Contact"/>
+
+                                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding AvatarSource}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
                         </Grid>
 
                         <Grid Grid.Column="1">

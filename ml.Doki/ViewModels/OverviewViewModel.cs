@@ -7,6 +7,9 @@ using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Models.Grouping;
 using ml.Doki.Services;
+using Windows.ApplicationModel.Contacts;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace ml.Doki.ViewModels
 {
@@ -67,6 +70,11 @@ namespace ml.Doki.ViewModels
                     };
 
                     // Load image
+                    Contact contact = await Singleton<ContactService>.Instance.GetContactByDisplayNameAsync(donator.FullName);
+                    if(contact != null)
+                    {
+                        donator.AvatarSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
+                    }
 
                     // Add to list
                     currentMonthDonators.Add(donator);

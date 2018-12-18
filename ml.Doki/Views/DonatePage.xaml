@@ -9,8 +9,12 @@
     <Grid>
         <Grid>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox Text="{Binding CurrentDonationName, Mode=TwoWay}" Header="Your name" />
-                <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}" Header="Your pledge" />
+                <TextBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
+                         Header="Your name"
+                         InputScope="PersonalFullName"/>
+                <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
+                         Header="Your pledge"
+                         InputScope="CurrencyAmount"/>
                 <Button Command="{Binding DonateCommand}">
                     Donate
                 </Button>

@@ -21,7 +21,7 @@
     <Style x:Key="CaptionSubtitleStyle" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
-        <Setter Property="Foreground" Value="{StaticResource PersonPictureEllipseFillThemeBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource SystemControlForegroundBaseMediumBrush}"/>
     </Style>
 
 </ResourceDictionary>
