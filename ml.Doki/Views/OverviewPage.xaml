@@ -7,25 +7,60 @@
     xmlns:models="using:ml.Doki.Models"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="DonatorsPerMonth" x:Key="DonatorsPerMonth"
+                              Source="{Binding DonatorsPerMonth, Mode=OneWay}"
+                              IsSourceGrouped="True"/>
+    </Page.Resources>
+    
     <Grid x:Name="ContentArea">
         <Grid>
             <StackPanel>
                 <Button Command="{Binding LoadCommand}">
                     Load
                 </Button>
-                <ListView ItemsSource="{Binding Donators}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Donator">
-                            <Grid>
-                                <StackPanel>
-                                    <Image Source="{Binding AvatarSource}"/>
-                                    <TextBlock Text="{Binding FullName}"/>
-                                    <TextBlock Text="{Binding TotalAmount}"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{x:Bind DonatorsPerMonth.View, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Donator">
+                                    <Grid>
+                                        <StackPanel>
+                                            <Image Source="{Binding AvatarSource}"/>
+                                            <TextBlock Text="{Binding FullName}"/>
+                                            <TextBlock Text="{Binding TotalAmount}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Key}"/>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+
+                    <SemanticZoom.ZoomedOutView>
+                        <ListView ItemsSource="{x:Bind DonatorsPerMonth.View.CollectionGroups}"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Group.Key}"
+                                               TextWrapping="Wrap" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
             </StackPanel>
         </Grid>
     </Grid>

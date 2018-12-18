@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
+using ml.Doki.Models.Grouping;
 using ml.Doki.Services;
 
 namespace ml.Doki.ViewModels
@@ -11,8 +13,15 @@ namespace ml.Doki.ViewModels
     public class OverviewViewModel : Observable
     {
         private ObservableCollection<Donator> _donators;
-
         public ObservableCollection<Donator> Donators { get => _donators; set => Set(ref _donators, value); }
+
+
+        private ObservableCollection<DonatorsPerMonthGroup> _donatorsPerMonth;
+        public ObservableCollection<DonatorsPerMonthGroup> DonatorsPerMonth
+        {
+            get => _donatorsPerMonth;
+            set => Set(ref _donatorsPerMonth, value);
+        }
 
 
         public ICommand LoadCommand { get; }
@@ -21,6 +30,7 @@ namespace ml.Doki.ViewModels
         {
             // Set properties
             Donators = new ObservableCollection<Donator>();
+            DonatorsPerMonth = new ObservableCollection<DonatorsPerMonthGroup>();
 
             // Set commands
             LoadCommand = new RelayCommand(Load);
@@ -30,26 +40,36 @@ namespace ml.Doki.ViewModels
         private async void Load()
         {
             // Clear all previous donations
-            Donators.Clear();
+            DonatorsPerMonth.Clear();
 
             // Load donations
             var donations = await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync();
 
-            // Group by name
-            var nameGroups = donations.GroupBy(d => d.FullName);
-            foreach(var name in nameGroups)
+            // Group by month
+            var monthlyDonations = donations.GroupBy(d => d.DonatedAt.Month, (key, list) => new DonationsPerMonthGroup(key, list));
+
+            // Loop through each month
+            foreach(var month in monthlyDonations)
             {
-                // Map to donators based on groups
-                var donator = new Donator
+                var currentMonthDonators = new List<Donator>();
+                // Loop through each donation during the current month
+                var nameGroups = month.ToList().GroupBy(d => d.FullName);
+                foreach (var name in nameGroups)
                 {
-                    FullName = name.Key,
-                    TotalAmount = name.Sum(x => x.Amount)
-                };
+                    // Map to donators based on groups
+                    var donator = new Donator
+                    {
+                        FullName = name.Key,
+                        TotalAmount = name.Sum(x => x.Amount)
+                    };
 
-                // Load image
+                    // Load image
 
-                // Add to list
-                Donators.Add(donator);
+                    // Add to list
+                    currentMonthDonators.Add(donator);
+                }
+
+                DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
             }
         }
     }

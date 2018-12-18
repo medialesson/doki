@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ml.Doki.Models.Grouping
 {
-    public class DonatorPerMonthGroup : IGrouping<int, Donator>
+    public class DonatorsPerMonthGroup : IGrouping<int, Donator>
     {
         public int Key { get; }
 
         private List<Donator> _menuItemsGroup;
 
-        public DonatorPerMonthGroup(int key, IEnumerable<Donator> items)
+        public DonatorsPerMonthGroup(int key, IEnumerable<Donator> items)
         {
             Key = key;
             _menuItemsGroup = items.ToList();
