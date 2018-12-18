@@ -52,6 +52,8 @@ namespace ml.Doki.ViewModels
 
         public ICommand ChooseFromContactsCommand { get; }
 
+        public ICommand OpenConfigurationsCommand { get; }
+
         #endregion
 
         public DonateViewModel()
@@ -60,6 +62,7 @@ namespace ml.Doki.ViewModels
             DonateCommand = new RelayCommand(Donate);
             FetchAvatarCommand = new RelayCommand<string>(AssignAvatarByName);
             ChooseFromContactsCommand = new RelayCommand(ChooseFromContacts);
+            OpenConfigurationsCommand = new RelayCommand(OpenConfigurations);
         }
 
         public async void Donate()
@@ -144,6 +147,21 @@ namespace ml.Doki.ViewModels
 
             if(contact != null)
                 AssignViewByContact(contact);
+        }
+
+        public async void OpenConfigurations()
+        {
+            if (await DeviceSecurity.ChallengeWindowsHelloAsync())
+            {
+                var dialog = new ContentDialog
+                {
+                    Content = new ConfigurationPage(),
+
+                    PrimaryButtonText = "Apply"
+                };
+
+                await dialog.ShowAsync();
+            }
         }
 
         public void ClearInput()
