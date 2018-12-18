@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid>
@@ -27,7 +29,7 @@
 
                     <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding AvatarSource}"/>
+                            <ImageBrush ImageSource="{Binding CurrentDonatorImageSource, Mode=OneWay}"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>
@@ -36,8 +38,9 @@
                          Margin="{StaticResource MediumTopMargin}"
                          Header="Your name"
                          HorizontalAlignment="Stretch"
-                         PlaceholderText=""
-                         InputScope="PersonalFullName"/>
+                         PlaceholderText="" 
+                         InputScope="PersonalFullName">
+                </TextBox>
                 
                 <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
                          Margin="{StaticResource SmallTopMargin}"

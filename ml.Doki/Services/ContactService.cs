@@ -20,7 +20,7 @@ namespace ml.Doki.Services
             var contactStore = await ContactManager.RequestStoreAsync();
             var contacts = await contactStore.FindContactsAsync();
 
-            var selectedContact = contacts.FirstOrDefault(c => c.DisplayName == name);
+            var selectedContact = contacts.FirstOrDefault(c => c.DisplayName.ToLower() == name.ToLower());
             return selectedContact;
         }
 
