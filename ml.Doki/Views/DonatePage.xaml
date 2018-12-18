@@ -7,18 +7,53 @@
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid>
-        <Grid>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                        MaxWidth="300">
+
+                <Grid Height="150" Width="150" CornerRadius="360">
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource SystemBaseLowColor}"/>
+                    </Grid.Background>
+                    
+                    <Viewbox MaxHeight="50" MaxWidth="50">
+                        <SymbolIcon Symbol="Contact"/>
+                    </Viewbox>
+
+                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding AvatarSource}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+
                 <TextBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
+                         Margin="{StaticResource MediumTopMargin}"
                          Header="Your name"
+                         HorizontalAlignment="Stretch"
+                         PlaceholderText=""
                          InputScope="PersonalFullName"/>
+                
                 <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
+                         Margin="{StaticResource SmallTopMargin}"
                          Header="Your pledge"
+                         HorizontalAlignment="Stretch"
+                         PlaceholderText="1,00"
                          InputScope="CurrencyAmount"/>
-                <Button Command="{Binding DonateCommand}">
-                    Donate
-                </Button>
             </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="{StaticResource SmallTopBottomMargin}">
+            <Button Command="{Binding DonateCommand}"
+                    Style="{ThemeResource AccentButtonStyle}"
+                    Height="60" HorizontalAlignment="Stretch">
+                <SymbolIcon Symbol="Forward"/>
+            </Button>
         </Grid>
     </Grid>
 </Page>
