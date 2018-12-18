@@ -6,13 +6,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+    <Grid>
+        <Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox Text="{Binding CurrentDonationName, Mode=TwoWay}" Header="Your name" />
+                <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}" Header="Your pledge" />
+                <Button Command="{Binding DonateCommand}">
+                    Donate
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

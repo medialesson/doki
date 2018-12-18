@@ -9,19 +9,24 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea">
         <Grid>
-            <ListView ItemsSource="{Binding Donators}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Donator">
-                        <Grid>
-                            <StackPanel>
-                                <Image Source="{Binding AvatarSource}"/>
-                                <TextBlock Text="{Binding FullName}"/>
-                                <TextBlock Text="{Binding TotalAmount}"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel>
+                <Button Command="{Binding LoadCommand}">
+                    Load
+                </Button>
+                <ListView ItemsSource="{Binding Donators}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Donator">
+                            <Grid>
+                                <StackPanel>
+                                    <Image Source="{Binding AvatarSource}"/>
+                                    <TextBlock Text="{Binding FullName}"/>
+                                    <TextBlock Text="{Binding TotalAmount}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

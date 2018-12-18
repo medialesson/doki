@@ -29,6 +29,9 @@ namespace ml.Doki.ViewModels
 
         private async void Load()
         {
+            // Clear all previous donations
+            Donators.Clear();
+
             // Load donations
             var donations = await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync();
 
