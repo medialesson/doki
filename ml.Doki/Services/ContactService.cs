@@ -49,7 +49,7 @@ namespace ml.Doki.Services
             if (contact?.SourceDisplayPicture != null)
             {
                 var bitmap = new BitmapImage();
-                bitmap.SetSource(await contact.Thumbnail.OpenReadAsync());
+                bitmap.SetSource(await contact.SourceDisplayPicture.OpenReadAsync());
                 return bitmap;
             }
 

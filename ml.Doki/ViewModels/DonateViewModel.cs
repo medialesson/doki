@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Services;
 using Windows.ApplicationModel.Contacts;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -62,6 +64,12 @@ namespace ml.Doki.ViewModels
         public async void Donate()
         {
             // Do validation
+            if (!IsInputValid())
+            {
+                var dialog = new MessageDialog("Please check all required fields and try again.", "Your input is not valid");
+                await dialog.ShowAsync();
+                return;
+            }
 
             // Donate
             await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
@@ -76,6 +84,18 @@ namespace ml.Doki.ViewModels
 
             // Clear input
             ClearInput();
+        }
+
+        private bool IsInputValid()
+        {
+            decimal amount;
+
+            bool isNameValid = !string.IsNullOrEmpty(CurrentDonationName);
+            bool isAmountValid = decimal.TryParse(CurrentDonationAmount,
+                NumberStyles.Currency, CultureInfo.CurrentCulture,
+                out amount);
+
+            return isNameValid && isAmountValid;
         }
 
         private async void AssignAvatarByName(string name)
