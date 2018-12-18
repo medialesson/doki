@@ -137,4 +137,8 @@
     <value>About</value>
     <comment>Pivot item header for About</comment>
   </data>
+  <data name="PivotItem_DonationConfirmation.Header" xml:space="preserve">
+    <value>DonationConfirmation</value>
+    <comment>Pivot item header for DonationConfirmation</comment>
+  </data>
 </root>

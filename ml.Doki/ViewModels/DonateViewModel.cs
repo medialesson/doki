@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Services;
+using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
@@ -75,7 +76,7 @@ namespace ml.Doki.ViewModels
             await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
             {
                 FullName = CurrentDonationName,
-                Amount = decimal.Parse(CurrentDonationAmount),
+                Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, CultureInfo.CurrentCulture),
                 DonatedAt = DateTime.Now
             });
 
@@ -84,6 +85,17 @@ namespace ml.Doki.ViewModels
 
             // Clear input
             ClearInput();
+
+            // Show confirmation
+            var confirmationDialog = new ContentDialog
+            {
+                Content = new DonationConfirmationPage(),
+
+                PrimaryButtonText = "Dismiss",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            await confirmationDialog.ShowAsync();
         }
 
         private bool IsInputValid()
