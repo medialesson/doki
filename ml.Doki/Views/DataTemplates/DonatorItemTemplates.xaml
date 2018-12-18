@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:ml.Doki.Models"
+    xmlns:local="using:ml.Doki.Views.DataTemplates">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <DataTemplate x:Key="DonatorListItemTemplate">
+                <Grid>
+                    <Grid Margin="{StaticResource SmallTopBottomMargin}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Ellipse Height="60" Width="60"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Ellipse.Fill>
+                                    <SolidColorBrush Color="{StaticResource SystemAccentColorLight1}"/>
+                                    <!--<ImageBrush ImageSource="{Binding AvatarSource}"/>-->
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="{StaticResource MediumLeftMargin}">
+                                <TextBlock Text="{Binding FullName}" Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                <TextBlock Text="{Binding TotalAmount}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

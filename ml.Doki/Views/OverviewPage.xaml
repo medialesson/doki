@@ -15,53 +15,56 @@
     </Page.Resources>
     
     <Grid x:Name="ContentArea">
-        <Grid>
-            <StackPanel>
-                <Button Command="{Binding LoadCommand}">
-                    Load
-                </Button>
-                
-                <SemanticZoom>
-                    <SemanticZoom.ZoomedInView>
-                        <ListView ItemsSource="{x:Bind DonatorsPerMonth.View, Mode=OneWay}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Donator">
-                                    <Grid>
-                                        <StackPanel>
-                                            <Image Source="{Binding AvatarSource}"/>
-                                            <TextBlock Text="{Binding FullName}"/>
-                                            <TextBlock Text="{Binding TotalAmount}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-                            <ListView.GroupStyle>
-                                <GroupStyle>
-                                    <GroupStyle.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Key}"/>
-                                        </DataTemplate>
-                                    </GroupStyle.HeaderTemplate>
-                                </GroupStyle>
-                            </ListView.GroupStyle>
-                        </ListView>
-                    </SemanticZoom.ZoomedInView>
+        <Grid Grid.Row="0">
+            <SemanticZoom>
+                <SemanticZoom.ZoomedInView>
+                    <ListView ItemsSource="{x:Bind DonatorsPerMonth.View, Mode=OneWay}"
+                              ItemTemplate="{StaticResource DonatorListItemTemplate}"
+                              SelectionMode="None">
 
-                    <SemanticZoom.ZoomedOutView>
-                        <ListView ItemsSource="{x:Bind DonatorsPerMonth.View.CollectionGroups}"
-                                  HorizontalAlignment="Center" VerticalAlignment="Center"
-                                  SelectionMode="None">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Group.Key}"
-                                               TextWrapping="Wrap" TextAlignment="Center"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </SemanticZoom.ZoomedOutView>
-                </SemanticZoom>
-            </StackPanel>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Key}"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+
+                <SemanticZoom.ZoomedOutView>
+                    <ListView ItemsSource="{x:Bind DonatorsPerMonth.View.CollectionGroups, Mode=OneWay}"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Group.Key, Mode=OneWay}"
+                                           Style="{ThemeResource SubheaderTextBlockStyle}"
+                                           TextWrapping="Wrap" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <CommandBar Style="{StaticResource CommandBarTransparent}">
+                <AppBarButton Icon="Refresh" Command="{Binding LoadCommand}"/>
+            </CommandBar>
         </Grid>
     </Grid>
 </Page>
