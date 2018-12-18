@@ -18,7 +18,14 @@
                                      AcceptsReturn="True"
                                      Height="80"/>
 
-                            <ComboBox Header="Locale"
+                            <!--<ComboBox Header="Language Locale"
+                                      ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
+                                      Margin="{StaticResource SmallTopMargin}"
+                                      HorizontalAlignment="Stretch"/>-->
+
+                            <ComboBox Header="Currency Locale"
+                                      ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
+                                      SelectedItem="{Binding SelectedCurrencyLocale, Mode=TwoWay}"
                                       Margin="{StaticResource SmallTopMargin}"
                                       HorizontalAlignment="Stretch"/>
                         </StackPanel>
