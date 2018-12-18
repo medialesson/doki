@@ -2,9 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:ml.Doki.Models"
+    xmlns:converters="using:ml.Doki.Helpers.Converters"
     xmlns:local="using:ml.Doki.Views.DataTemplates">
+
     <ResourceDictionary.MergedDictionaries>
+
         <ResourceDictionary>
+            <converters:DecimalToStringCurrencyConverter x:Key="decimalToStringCurrencyConverter"/>
             <DataTemplate x:Key="DonatorListItemTemplate">
                 <Grid>
                     <Grid Margin="{StaticResource SmallTopBottomMargin}">
@@ -32,8 +36,11 @@
                         <Grid Grid.Column="1">
                             <StackPanel VerticalAlignment="Center"
                                         Margin="{StaticResource MediumLeftMargin}">
-                                <TextBlock Text="{Binding FullName}" Style="{ThemeResource CaptionSubtitleStyle}"/>
-                                <TextBlock Text="{Binding TotalAmount}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                                <TextBlock Text="{Binding FullName}"
+                                           Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                
+                                <TextBlock Text="{Binding TotalAmount, Converter={StaticResource decimalToStringCurrencyConverter}}"
+                                           Style="{ThemeResource TitleTextBlockStyle}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
