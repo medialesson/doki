@@ -110,8 +110,12 @@
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\PivotItemExtensions.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\Donator.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\DonationFakeService.cs" />
+    <Compile Include="Services\IDonationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\DonateViewModel.cs" />
@@ -183,9 +187,7 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
