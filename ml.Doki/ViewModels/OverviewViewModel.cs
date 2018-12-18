@@ -45,6 +45,9 @@ namespace ml.Doki.ViewModels
             // Load donations
             var donations = await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync();
 
+            // Get the donations created during this year
+            donations = donations.Where(d => d.DonatedAt.Year == DateTime.Now.Year).ToList();
+
             // Group by month
             var monthlyDonations = donations.GroupBy(d => d.DonatedAt.Month, (key, list) => new DonationsPerMonthGroup(key, list));
 

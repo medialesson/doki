@@ -5,10 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:ml.Doki.Models"
+    xmlns:converters="using:ml.Doki.Helpers.Converters"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <converters:NumberToMonthNameConverter x:Key="numberToMonthNameConverter"/>
         <CollectionViewSource x:Name="DonatorsPerMonth" x:Key="DonatorsPerMonth"
                               Source="{Binding DonatorsPerMonth, Mode=OneWay}"
                               IsSourceGrouped="True"/>
@@ -37,7 +39,7 @@
                             <GroupStyle>
                                 <GroupStyle.HeaderTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Key}"/>
+                                        <TextBlock Text="{Binding Key, Converter={StaticResource numberToMonthNameConverter}}"/>
                                     </DataTemplate>
                                 </GroupStyle.HeaderTemplate>
                             </GroupStyle>
@@ -51,7 +53,7 @@
                               SelectionMode="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Group.Key, Mode=OneWay}"
+                                <TextBlock Text="{Binding Group.Key, Converter={StaticResource numberToMonthNameConverter}, Mode=OneWay}"
                                            Style="{ThemeResource SubheaderTextBlockStyle}"
                                            TextWrapping="Wrap" TextAlignment="Center"/>
                             </DataTemplate>
