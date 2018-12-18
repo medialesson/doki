@@ -12,8 +12,11 @@
                 <PivotItem Header="Content">
                     <ScrollViewer Margin="{StaticResource SmallTopBottomMargin}">
                         <StackPanel>
-                            <RichEditBox Header="About text"
-                                         Height="80"/>
+                            <TextBox Text="{Binding AboutText, Mode=TwoWay}"
+                                     Header="About text"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="80"/>
 
                             <ComboBox Header="Locale"
                                       Margin="{StaticResource SmallTopMargin}"

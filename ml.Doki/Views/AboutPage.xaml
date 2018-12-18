@@ -14,14 +14,9 @@
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
                         Where goes my money?
                     </TextBlock>
-                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                               Margin="{StaticResource XXSmallTopMargin}">
-                        All income goes back to you and is being used for various purchases, such as
-                        snacks for casual game nights, filament for our 3D printer, new office items - or just for our
-                        students who will be using the income to buy coffee at Starbucks during their crunch time.
-                        
-                        <LineBreak/><LineBreak/>Either way, we would be pretty happy if you decide to take part in it.
-                    </TextBlock>
+                    <TextBlock Text="{Binding AboutText, Mode=OneWay}"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Margin="{StaticResource XXSmallTopMargin}"/>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">

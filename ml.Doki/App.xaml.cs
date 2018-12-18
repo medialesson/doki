@@ -31,6 +31,7 @@ namespace ml.Doki
                 await ActivationService.ActivateAsync(args);
             }
 
+            await Singleton<Settings>.Instance.InitializeAsync();
             await Singleton<ContactService>.Instance.PromptForPermissionsAsync();
         }
 

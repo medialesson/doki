@@ -153,11 +153,17 @@ namespace ml.Doki.ViewModels
         {
             if (await DeviceSecurity.ChallengeWindowsHelloAsync())
             {
+                var configurationPage = new ConfigurationPage();
                 var dialog = new ContentDialog
                 {
-                    Content = new ConfigurationPage(),
+                    Content = configurationPage,
 
-                    PrimaryButtonText = "Apply"
+                    PrimaryButtonText = "Apply",
+                    PrimaryButtonCommand = configurationPage.ViewModel.SaveCommand,
+
+                    CloseButtonText = "Cancel",
+
+                    DefaultButton = ContentDialogButton.Primary
                 };
 
                 await dialog.ShowAsync();

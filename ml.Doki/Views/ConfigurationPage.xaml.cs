@@ -13,6 +13,7 @@ namespace ml.Doki.Views
         public ConfigurationPage()
         {
             InitializeComponent();
+            DataContext = ViewModel;
         }
     }
 }
