@@ -6,13 +6,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+    <Grid x:Name="ContentArea">
+        <ScrollViewer>
+            <StackPanel>
+                <!-- TODO: Move to settings -->
+                <StackPanel Margin="{StaticResource XXSmallTopMargin}">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
+                        Where goes my money?
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Margin="{StaticResource XXSmallTopMargin}">
+                        All income goes back to you and is being used for various purchases, such as
+                        snacks for casual game nights, filament for our 3D printer, new office items - or just for our
+                        students who will be using the income to buy coffee at Starbucks during their crunch time.
+                        
+                        <LineBreak/><LineBreak/>Either way, we would be pretty happy if you decide to take part in it.
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="{StaticResource MediumTopMargin}">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
+                        About
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Margin="{StaticResource XXSmallTopMargin}">
+                        Developed by Gino Messmer &amp; Samuel Oechsler.
+                        <LineBreak/>Fork us on <Hyperlink NavigateUri="https://github.com/medialesson/doki-uwp">GitHub</Hyperlink>.
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="{StaticResource MediumTopMargin}">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
+                        Licenses
+                    </TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Margin="{StaticResource XXSmallTopMargin}">
+                        <Span>
+                            Beer icon made by <Hyperlink NavigateUri="https://www.flaticon.com/authors/srip">srip</Hyperlink> 
+                            from <Hyperlink NavigateUri="https://www.flaticon.com/">flaticon.com</Hyperlink> 
+                            is licensed by CC 3.0 BY.
+                        </Span>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

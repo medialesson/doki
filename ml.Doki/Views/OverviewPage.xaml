@@ -29,6 +29,12 @@
                               ItemTemplate="{StaticResource DonatorListItemTemplate}"
                               SelectionMode="None">
 
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="30" IsStaggeringEnabled="True"/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

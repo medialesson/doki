@@ -80,6 +80,9 @@ namespace ml.Doki.ViewModels
                     currentMonthDonators.Add(donator);
                 }
 
+                // Sort by total amount
+                currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();
+
                 DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
             }
         }
