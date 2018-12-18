@@ -10,9 +10,29 @@ namespace ml.Doki.Services
 {
     public class ContactService
     {
-        public async Task PromptForPermissionsAsync()
+        public async Task<ContactStore> PromptForPermissionsAsync()
         {
-            await ContactManager.RequestStoreAsync();
+            return await ContactManager.RequestStoreAsync(ContactStoreAccessType.AllContactsReadOnly);
+        }
+
+        public async Task<Contact> PromptUserForContactAsync()
+        {
+            // Open the prompt
+            var contactPicker = new ContactPicker()
+            {
+                SelectionMode = ContactSelectionMode.Contacts
+            };
+
+            Contact contact = await contactPicker.PickContactAsync();
+
+            if (contact != null)
+            {
+                // Fetch all the details
+                ContactStore contactStore = await PromptForPermissionsAsync();
+                contact = await contactStore.GetContactAsync(contact.Id);
+            }
+
+            return contact;
         }
 
         public async Task<Contact> GetContactByDisplayNameAsync(string name)

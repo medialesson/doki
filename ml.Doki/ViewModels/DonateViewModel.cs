@@ -47,6 +47,8 @@ namespace ml.Doki.ViewModels
 
         public ICommand FetchAvatarCommand { get; }
 
+        public ICommand ChooseFromContactsCommand { get; }
+
         #endregion
 
         public DonateViewModel()
@@ -54,6 +56,26 @@ namespace ml.Doki.ViewModels
             // Set commands
             DonateCommand = new RelayCommand(Donate);
             FetchAvatarCommand = new RelayCommand<string>(AssignAvatarByName);
+            ChooseFromContactsCommand = new RelayCommand(ChooseFromContacts);
+        }
+
+        public async void Donate()
+        {
+            // Do validation
+
+            // Donate
+            await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
+            {
+                FullName = CurrentDonationName,
+                Amount = decimal.Parse(CurrentDonationAmount),
+                DonatedAt = DateTime.Now
+            });
+
+            // Refresh overview view model in background
+            Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
+
+            // Clear input
+            ClearInput();
         }
 
         private async void AssignAvatarByName(string name)
@@ -78,23 +100,18 @@ namespace ml.Doki.ViewModels
             CurrentDonatorImageSource = null;
         }
 
-        public async void Donate()
+        private async void AssignViewByContact(Contact contact)
         {
-            // Do validation
+            CurrentDonationName = contact.DisplayName;
+            CurrentDonatorImageSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
+        }
 
-            // Donate
-            await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
-            {
-                FullName = CurrentDonationName,
-                Amount = decimal.Parse(CurrentDonationAmount),
-                DonatedAt = DateTime.Now
-            });
+        private async void ChooseFromContacts()
+        {
+            var contact = await Singleton<ContactService>.Instance.PromptUserForContactAsync();
 
-            // Refresh overview view model in background
-            Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
-
-            // Clear input
-            ClearInput();
+            if(contact != null)
+                AssignViewByContact(contact);
         }
 
         public void ClearInput()

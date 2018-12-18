@@ -18,14 +18,28 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch"
                         MaxWidth="300">
 
-                <Grid Height="150" Width="150" CornerRadius="360">
+                <Grid Height="170" Width="170" CornerRadius="360">
                     <Grid.Background>
                         <SolidColorBrush Color="{StaticResource SystemBaseLowColor}"/>
                     </Grid.Background>
-                    
-                    <Viewbox MaxHeight="50" MaxWidth="50">
-                        <SymbolIcon Symbol="Contact"/>
-                    </Viewbox>
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="PointerPressed">
+                            <core:InvokeCommandAction Command="{Binding ChooseFromContactsCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+
+                    <Grid VerticalAlignment="Center">
+                        <StackPanel>
+                            <Viewbox MaxHeight="50" MaxWidth="50">
+                                <SymbolIcon Symbol="Contact"/>
+                            </Viewbox>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
+                                       Margin="{StaticResource SmallTopMargin}"
+                                       TextAlignment="Center">
+                                Choose from staff
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
 
                     <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Ellipse.Fill>
