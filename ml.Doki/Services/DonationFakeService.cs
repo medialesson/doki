@@ -39,12 +39,15 @@ namespace ml.Doki.Services
 
         public async Task DonateAsync(Donation donation)
         {
-            throw new NotImplementedException();
+            await Task.Run(() =>
+            {
+                _donations.Add(donation);
+            });
         }
 
         public async Task<IList<Donation>> GetAllDonationsAsync()
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(_donations.OrderByDescending(x => x.DonatedAt).ToList());
         }
     }
 }

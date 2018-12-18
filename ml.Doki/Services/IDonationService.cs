@@ -9,8 +9,8 @@ namespace ml.Doki.Services
 {
     public interface IDonationService
     {
-        public Task DonateAsync(Donation donation);
+        Task DonateAsync(Donation donation);
 
-        public Task<IList<Donation>> GetAllDonationsAsync();
+        Task<IList<Donation>> GetAllDonationsAsync();
     }
 }

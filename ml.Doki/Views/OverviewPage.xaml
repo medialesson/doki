@@ -4,15 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:ml.Doki.Models"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+    <Grid x:Name="ContentArea">
+        <Grid>
+            <ListView ItemsSource="{Binding Donators}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Donator">
+                        <Grid>
+                            <StackPanel>
+                                <Image Source="{Binding AvatarSource}"/>
+                                <TextBlock Text="{Binding FullName}"/>
+                                <TextBlock Text="{Binding TotalAmount}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </Page>
