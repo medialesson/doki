@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behavior="using:ml.Doki.Behaviors"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid>
@@ -58,6 +59,9 @@
                         <core:EventTriggerBehavior EventName="TextChanged">
                             <core:InvokeCommandAction Command="{Binding PopulateAutoSuggestNamesCommand}"/>
                         </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="Enter">
+                            <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
+                        </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </AutoSuggestBox>
                 
@@ -67,6 +71,11 @@
                          HorizontalAlignment="Stretch"
                          PlaceholderText="1,00"
                          InputScope="CurrencyAmount"/>
+                <i:Interaction.Behaviors>
+                    <behavior:KeyBehavior Key="Enter">
+                        <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
+                    </behavior:KeyBehavior>
+                </i:Interaction.Behaviors>
             </StackPanel>
         </Grid>
 

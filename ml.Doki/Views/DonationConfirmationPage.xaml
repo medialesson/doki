@@ -8,7 +8,7 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea">
         <Grid>
-            <StackPanel>
+            <StackPanel VerticalAlignment="Center">
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
                            TextAlignment="Center">
                     Thank you for your donation

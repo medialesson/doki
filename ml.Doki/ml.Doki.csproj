@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Behaviors\KeyBehavior.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\Converters\DecimalToStringCurrencyConverter.cs" />
     <Compile Include="Helpers\Converters\NumberToMonthNameConverter.cs" />

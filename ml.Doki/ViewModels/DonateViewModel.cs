@@ -10,6 +10,7 @@ using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
 namespace ml.Doki.ViewModels
@@ -66,6 +67,8 @@ namespace ml.Doki.ViewModels
 
         public ICommand PopulateAutoSuggestNamesCommand { get; }
 
+        public ICommand FocusNextElementCommand { get; }
+
         #endregion
 
         public DonateViewModel()
@@ -79,6 +82,7 @@ namespace ml.Doki.ViewModels
             ChooseFromContactsCommand = new RelayCommand(ChooseFromContacts);
             OpenConfigurationsCommand = new RelayCommand(OpenConfigurations);
             PopulateAutoSuggestNamesCommand = new RelayCommand(PopulateAutoSuggestNames);
+            FocusNextElementCommand = new RelayCommand(FocusNextElement);
         }
 
         public async void Donate()
@@ -195,6 +199,11 @@ namespace ml.Doki.ViewModels
                 var list = (await Singleton<ContactService>.Instance.SearchContactsByNameAsync(CurrentDonationName, true)).ToList();
                 list.ForEach(c => DonationNameAutoSuggestList.Add(c.DisplayName));
             }
+        }
+
+        private void FocusNextElement()
+        {
+            FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
         }
 
         public void ClearInput()
