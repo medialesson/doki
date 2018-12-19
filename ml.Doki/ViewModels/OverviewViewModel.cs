@@ -105,12 +105,19 @@ namespace ml.Doki.ViewModels
 
 
             var page = new DonatorDetailPage();
-            page.ViewModel.Donator = SelectedDonator;
             page.ViewModel.Donations = new ObservableCollection<Donation>();
 
             var donations = (await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync())
                 .Where(d => d.FullName == SelectedDonator.FullName);
             donations.ToList().ForEach(d => page.ViewModel.Donations.Add(d));
+
+            page.ViewModel.Donator = new Donator
+            {
+                FullName = SelectedDonator.FullName,
+                AvatarSource = SelectedDonator.AvatarSource,
+                TotalAmount = donations.Sum(x => x.Amount)
+            };
+
 
             var dialog = new ContentDialog
             {
