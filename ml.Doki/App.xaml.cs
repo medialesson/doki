@@ -38,6 +38,13 @@ namespace ml.Doki
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            // Init app center
+            var appCenterId = Singleton<Settings>.Instance.AppCenterId;
+            if (string.IsNullOrEmpty(appCenterId))
+            {
+                AppCenter.Start(appCenterId, typeof(Analytics), typeof(Crashes));
+            }
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
