@@ -126,15 +126,15 @@
     <comment>Application description</comment>
   </data>
   <data name="PivotPage_Donate.Header" xml:space="preserve">
-    <value>Donate</value>
+    <value>Spenden</value>
     <comment>Pivot item header for Donate</comment>
   </data>
   <data name="PivotPage_Overview.Header" xml:space="preserve">
-    <value>Overview</value>
+    <value>Übersicht</value>
     <comment>Pivot item header for Overview</comment>
   </data>
   <data name="PivotPage_About.Header" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
     <comment>Pivot item header for About</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
@@ -145,16 +145,16 @@
     <value>TODO: Find out how to embed stuff here first</value>
   </data>
   <data name="AboutPage_DonationTargetTitle.Text" xml:space="preserve">
-    <value>Where goes my money?</value>
+    <value>Wohin geht meine Spende?</value>
   </data>
   <data name="AboutPage_Licenses.Text" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Lizenzen</value>
   </data>
   <data name="AboutPage_LicensesInfo.Text" xml:space="preserve">
     <value>TODO: Find out how to embed stuff here first</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -163,72 +163,72 @@
     <value>App Center ID</value>
   </data>
   <data name="ConfigurationPage_Content.Header" xml:space="preserve">
-    <value>Content</value>
+    <value>Inhalt</value>
   </data>
   <data name="ConfigurationPage_ContentAboutDescription.Header" xml:space="preserve">
-    <value>About text</value>
+    <value>Spendengrund</value>
   </data>
   <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
-    <value>Currency local</value>
+    <value>Währungseinheit</value>
   </data>
   <data name="ConfigurationPage_SaveDialog.Description" xml:space="preserve">
-    <value>Settings have been applied.</value>
+    <value>Die Einstellungen wurden übernommen.</value>
   </data>
   <data name="ConfigurationPage_SaveDialog.Title" xml:space="preserve">
     <value />
   </data>
   <data name="DonatePage_ContactImageDescription.Text" xml:space="preserve">
-    <value>Choose from staff</value>
+    <value>Mitarbeiter auswählen</value>
   </data>
   <data name="DonatePage_DonateConfirmationDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Dismiss</value>
+    <value>Schließen</value>
   </data>
   <data name="DonatePage_DonateValidationDialog.Description" xml:space="preserve">
-    <value>Please check all required fields and try again.</value>
+    <value>Überprüfe alle Felder und versuche es erneut.</value>
   </data>
   <data name="DonatePage_DonateValidationDialog.Title" xml:space="preserve">
-    <value>Your input is not valid</value>
+    <value>Eingabe ungültig</value>
   </data>
   <data name="DonatePage_DonationAmount.Header" xml:space="preserve">
-    <value>Your pledge</value>
+    <value>Spende</value>
   </data>
   <data name="DonatePage_DonationName.Header" xml:space="preserve">
-    <value>Your name</value>
+    <value>Name</value>
   </data>
   <data name="DonatePage_DonationName.PlaceholderText" xml:space="preserve">
     <value />
   </data>
   <data name="DonatePage_OpenConfigurationsDialog.CloseButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="DonatePage_OpenConfigurationsDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Apply</value>
+    <value>Anwenden</value>
   </data>
   <data name="DonatePage_SettingsMenuFlyoutItem.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="DonationConfirmationPage_Description.Text" xml:space="preserve">
-    <value>Stay awesome</value>
+    <value>Bleib geschmeidig</value>
   </data>
   <data name="DonationConfirmationPage_Title.Text" xml:space="preserve">
-    <value>Thank you for your donation</value>
+    <value>Vielen Dank für deine Spende</value>
   </data>
   <data name="DonatorDetailPage_SupportType.Text" xml:space="preserve">
-    <value>lifetime support</value>
+    <value>gesammt gespendet</value>
   </data>
   <data name="OverviewPage_RefreshButton.Label" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Erneut laden</value>
   </data>
   <data name="OverviewPage_SelectDonatorDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Close</value>
+    <value>Schließen</value>
   </data>
   <data name="DonatePage_AverageAmountButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Donate the average</value>
+    <value>Spendendurchschnitt einsetzen</value>
   </data>
   <data name="DonatorItemTemplates_RewardMvp.ToolTipService.ToolTip" xml:space="preserve">
-    <value>MVP</value>
+    <value>Am meisten gespendet</value>
   </data>
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Trending</value>
+    <value>Am häufigsten gespendet</value>
   </data>
 </root>

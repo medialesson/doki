@@ -83,7 +83,8 @@
                     <Button Grid.Column="1"
                             Command="{Binding FetchAverageDonationAmountCommand}"
                             VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
-                            Content="{Binding CurrencySymbol}"/>
+                            Content="{Binding CurrencySymbol}"
+                            x:Uid="DonatePage_AverageAmountButton"/>
                     <i:Interaction.Behaviors>
                         <behavior:KeyBehavior Key="Enter">
                             <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>

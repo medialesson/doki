@@ -47,7 +47,7 @@
                         <Grid Grid.Column="2">
                             <Grid VerticalAlignment="Stretch" >
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Rewards.IsMostValuable}" Margin="{StaticResource SmallLeftMargin}" ToolTipService.ToolTip="MVP">
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Rewards.IsMostValuable}" Margin="{StaticResource SmallLeftMargin}" x:Uid="DonatorItemTemplates_RewardMvp">
                                         <Grid Margin="0,2,0,0"
                                             CornerRadius="4"
                                             HorizontalAlignment="Center"
@@ -62,7 +62,7 @@
                                         <FontIcon  Margin="{StaticResource SmallLeftMargin}" FontFamily="Segoe UI Emoji" Glyph="&#x1F3C6;"/>
                                     </StackPanel>
 
-                                    <Grid Visibility="{Binding Rewards.IsTrending}" Margin="{StaticResource SmallLeftMargin}" ToolTipService.ToolTip="Trending">
+                                    <Grid Visibility="{Binding Rewards.IsTrending}" Margin="{StaticResource SmallLeftMargin}" x:Uid="DonatorItemTemplates_RewardTrending">
                                         <FontIcon FontFamily="Segoe UI Emoji" Glyph="&#x1F525;"/>
                                     </Grid>
                                 </StackPanel>
