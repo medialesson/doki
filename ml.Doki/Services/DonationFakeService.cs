@@ -33,7 +33,7 @@ namespace ml.Doki.Services
             {
                 FullName = "Gino Messmer",
                 Amount = 100,
-                DonatedAt = DateTime.Now
+                DonatedAt = DateTime.Now - TimeSpan.FromDays(35)
             },
         };
 

@@ -9,6 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <converters:DecimalToStringCurrencyConverter x:Key="decimalToStringCurrencyConverter"/>
+        <converters:DateToRelativeTimeConverter x:Key="dateToRelativeTimeConverter"/>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -51,7 +52,7 @@
                             <DataTemplate>
                                 <Grid Margin="{StaticResource SmallTopBottomMargin}">
                                     <StackPanel>
-                                        <TextBlock Text="{Binding DonatedAt}" Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                        <TextBlock Text="{Binding DonatedAt, Converter={StaticResource dateToRelativeTimeConverter}}" Style="{ThemeResource CaptionSubtitleStyle}"/>
                                         <TextBlock Text="{Binding Amount, Converter={StaticResource decimalToStringCurrencyConverter}}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                                     </StackPanel>
                                 </Grid>
