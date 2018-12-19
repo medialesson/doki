@@ -14,11 +14,15 @@ namespace ml.Doki.Helpers
 
         public string ApplicationCultureName { get; private set; }
 
+        public string AppCenterId { get; private set; }
+
 
         public async Task InitializeAsync()
         {
             AboutText = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AboutText));
             ApplicationCultureName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(ApplicationCultureName)) ?? "en-us";
+
+            AppCenterId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AppCenterId));
         }
 
         public async Task SetAboutTextAsync(string text)
@@ -30,6 +34,12 @@ namespace ml.Doki.Helpers
         public async Task SetApplicationCultureNameAsync(string name)
         {
             await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(ApplicationCultureName), name);
+            await InitializeAsync();
+        }
+
+        public async Task SetAppCenterIdAsync(string id)
+        {
+            await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(AppCenterId), id);
             await InitializeAsync();
         }
 

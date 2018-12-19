@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Services;

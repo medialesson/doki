@@ -1,4 +1,9 @@
 ﻿using System;
+
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+
 using ml.Doki.Helpers;
 using ml.Doki.Services;
 
@@ -33,6 +38,13 @@ namespace ml.Doki
 
             await Singleton<Settings>.Instance.InitializeAsync();
             await Singleton<ContactService>.Instance.PromptForPermissionsAsync();
+
+            // Init app center
+            var appCenterId = Singleton<Settings>.Instance.AppCenterId;
+            if(string.IsNullOrEmpty(appCenterId))
+            {
+                AppCenter.Start(appCenterId, typeof(Analytics), typeof(Crashes));
+            }
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)

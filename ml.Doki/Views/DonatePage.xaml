@@ -62,6 +62,9 @@
                         <core:EventTriggerBehavior EventName="Enter">
                             <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
                         </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="SuggestionChosen">
+                            <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
+                        </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </AutoSuggestBox>
                 

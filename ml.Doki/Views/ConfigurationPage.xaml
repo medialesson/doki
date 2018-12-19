@@ -32,7 +32,12 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem Header="API">
-                    
+                    <ScrollViewer Margin="{StaticResource SmallTopBottomMargin}">
+                        <StackPanel>
+                            <TextBox Text="{Binding AppCenterId, Mode=TwoWay}"
+                                     Header="App Center ID"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </PivotItem>
             </Pivot>
         </Grid>

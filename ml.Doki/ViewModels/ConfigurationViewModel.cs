@@ -32,6 +32,14 @@ namespace ml.Doki.ViewModels
         }
 
 
+        private string _appCenterId;
+        public string AppCenterId
+        {
+            get => _appCenterId;
+            set => Set(ref _appCenterId, value);
+        }
+
+
         public ICommand LoadCommand { get; }
 
         public ICommand SaveCommand { get; }
@@ -52,12 +60,16 @@ namespace ml.Doki.ViewModels
             AboutText = Singleton<Settings>.Instance.AboutText;
             AvailableLocales = new ObservableCollection<string>(await Singleton<Settings>.Instance.GetAllAvailableCultureNamesAsync());
             SelectedCurrencyLocale = Singleton<Settings>.Instance.ApplicationCultureName;
+
+            AppCenterId = Singleton<Settings>.Instance.AppCenterId;
         }
 
         public async void Save()
         {
             await Singleton<Settings>.Instance.SetAboutTextAsync(this.AboutText);
             await Singleton<Settings>.Instance.SetApplicationCultureNameAsync(this.SelectedCurrencyLocale);
+
+            await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
 
             await new MessageDialog("Settings were saved and will be applied when you restart the app.").ShowAsync();
         }
