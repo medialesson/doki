@@ -8,7 +8,7 @@ namespace ml.Doki.Views
 {
     public sealed partial class DonatePage : Page
     {
-        public DonateViewModel ViewModel { get; } = new DonateViewModel();
+        public DonateViewModel ViewModel { get; } = Singleton<DonateViewModel>.Instance;
 
         public DonatePage()
         {

@@ -20,7 +20,6 @@ namespace ml.Doki.ViewModels
     public class DonateViewModel : Observable
     {
         #region Properties
-
         private ImageSource _currentDonatorImageSource;
         public ImageSource CurrentDonatorImageSource
         {
@@ -48,12 +47,18 @@ namespace ml.Doki.ViewModels
             }
         }
 
-
         private ObservableCollection<string> _donationNameAutoSuggestList;
         public ObservableCollection<string> DonationNameAutoSuggestList
         {
             get => _donationNameAutoSuggestList;
             set => Set(ref _donationNameAutoSuggestList, value);
+        }
+
+        private string _currencySymbol;
+        public string CurrencySymbol
+        {
+            get => _currencySymbol;
+            set => Set(ref _currencySymbol, value);
         }
         #endregion
 
@@ -63,6 +68,8 @@ namespace ml.Doki.ViewModels
 
         public ICommand FetchAvatarCommand { get; }
 
+        public ICommand FetchAverageDonationAmountCommand { get; }
+
         public ICommand ChooseFromContactsCommand { get; }
 
         public ICommand OpenConfigurationsCommand { get; }
@@ -71,12 +78,14 @@ namespace ml.Doki.ViewModels
 
         public ICommand FocusNextElementCommand { get; }
 
+        public ICommand FetchCurrencySymbolCommand { get; }
         #endregion
 
         public DonateViewModel()
         {
             // Set properties
             DonationNameAutoSuggestList = new ObservableCollection<string>();
+            FetchCurrencySymbol();
 
             // Set commands
             DonateCommand = new RelayCommand(Donate);
@@ -85,7 +94,9 @@ namespace ml.Doki.ViewModels
             OpenConfigurationsCommand = new RelayCommand(OpenConfigurations);
             PopulateAutoSuggestNamesCommand = new RelayCommand(PopulateAutoSuggestNames);
             FocusNextElementCommand = new RelayCommand(FocusNextElement);
+            FetchAverageDonationAmountCommand = new RelayCommand(AssignAverageDonationAmount);
         }
+
 
         public async void Donate()
         {
@@ -206,6 +217,24 @@ namespace ml.Doki.ViewModels
         private void FocusNextElement()
         {
             FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+        }
+
+        private void AssignAverageDonationAmount()
+        {
+            var locale = Singleton<Settings>.Instance.ApplicationCultureName;
+            var cultureInfo = new CultureInfo(locale);
+
+            var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault().ToList();
+            var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), cultureInfo));
+            CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
+        }
+
+        public void FetchCurrencySymbol()
+        {
+            var locale = Singleton<Settings>.Instance.ApplicationCultureName;
+            var cultureInfo = new CultureInfo(locale);
+
+            CurrencySymbol = cultureInfo.NumberFormat.CurrencySymbol;
         }
 
         public void ClearInput()

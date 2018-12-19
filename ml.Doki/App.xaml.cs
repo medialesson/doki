@@ -31,19 +31,12 @@ namespace ml.Doki
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            if (!args.PrelaunchActivated)
-            {
-                await ActivationService.ActivateAsync(args);
-            }
-
             await Singleton<Settings>.Instance.InitializeAsync();
             await Singleton<ContactService>.Instance.PromptForPermissionsAsync();
 
-            // Init app center
-            var appCenterId = Singleton<Settings>.Instance.AppCenterId;
-            if(string.IsNullOrEmpty(appCenterId))
+            if (!args.PrelaunchActivated)
             {
-                AppCenter.Start(appCenterId, typeof(Analytics), typeof(Crashes));
+                await ActivationService.ActivateAsync(args);
             }
         }
 

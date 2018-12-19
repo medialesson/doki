@@ -69,6 +69,10 @@ namespace ml.Doki.ViewModels
             await Singleton<Settings>.Instance.SetAboutTextAsync(this.AboutText);
             await Singleton<Settings>.Instance.SetApplicationCultureNameAsync(this.SelectedCurrencyLocale);
 
+            // TODO: Is this legit?
+            Singleton<DonateViewModel>.Instance.FetchCurrencySymbol();
+            Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
+
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
 
             await new MessageDialog("Settings were saved and will be applied when you restart the app.").ShowAsync();

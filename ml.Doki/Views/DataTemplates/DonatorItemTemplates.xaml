@@ -43,6 +43,31 @@
                                            Style="{ThemeResource TitleTextBlockStyle}"/>
                             </StackPanel>
                         </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Grid VerticalAlignment="Stretch" >
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Rewards.IsMostValuable}" Margin="{StaticResource SmallLeftMargin}" ToolTipService.ToolTip="MVP">
+                                        <Grid Margin="0,2,0,0"
+                                            CornerRadius="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                            <Grid.Background>
+                                                <SolidColorBrush Color="{ThemeResource SystemAccentColor}"/>
+                                            </Grid.Background>
+
+                                            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Margin="6">MVP</TextBlock>
+                                        </Grid>
+
+                                        <FontIcon  Margin="{StaticResource SmallLeftMargin}" FontFamily="Segoe UI Emoji" Glyph="&#x1F3C6;"/>
+                                    </StackPanel>
+
+                                    <Grid Visibility="{Binding Rewards.IsTrending}" Margin="{StaticResource SmallLeftMargin}" ToolTipService.ToolTip="Trending">
+                                        <FontIcon FontFamily="Segoe UI Emoji" Glyph="&#x1F525;"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </DataTemplate>

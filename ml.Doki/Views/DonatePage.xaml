@@ -29,13 +29,14 @@
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
 
-                    <Grid VerticalAlignment="Center">
+                    <Grid VerticalAlignment="Center" Margin="0,0,0,4">
                         <StackPanel>
                             <Viewbox MaxHeight="50" MaxWidth="50">
                                 <SymbolIcon Symbol="Contact"/>
                             </Viewbox>
                             <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
                                        Margin="{StaticResource SmallTopMargin}"
+                                       FontSize="12"
                                        TextAlignment="Center">
                                 Choose from staff
                             </TextBlock>
@@ -67,18 +68,29 @@
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </AutoSuggestBox>
-                
-                <TextBox Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
-                         Margin="{StaticResource SmallTopMargin}"
-                         Header="Your pledge"
-                         HorizontalAlignment="Stretch"
-                         PlaceholderText="1,00"
-                         InputScope="CurrencyAmount"/>
-                <i:Interaction.Behaviors>
-                    <behavior:KeyBehavior Key="Enter">
-                        <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
-                    </behavior:KeyBehavior>
-                </i:Interaction.Behaviors>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0"
+                             Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
+                             Margin="{StaticResource SmallTopMargin}"
+                             Header="Your pledge"
+                             HorizontalAlignment="Stretch"
+                             PlaceholderText="1,00"
+                             InputScope="CurrencyAmount"/>
+                    <Button Grid.Column="1"
+                            Command="{Binding FetchAverageDonationAmountCommand}"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                            Content="{Binding CurrencySymbol}"/>
+                    <i:Interaction.Behaviors>
+                        <behavior:KeyBehavior Key="Enter">
+                            <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
+                        </behavior:KeyBehavior>
+                    </i:Interaction.Behaviors>
+                </Grid>
             </StackPanel>
         </Grid>
 
