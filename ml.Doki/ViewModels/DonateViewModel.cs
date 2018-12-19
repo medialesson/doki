@@ -119,8 +119,8 @@ namespace ml.Doki.ViewModels
             // Do validation
             if (!IsInputValid())
             {
-                var dialog = new MessageDialog(Resource.GetString("DonatePage_DonateValidationDialog/Title"),
-                    Resource.GetString("DonatePage_DonateValidationDialog/Description"));
+                var dialog = new MessageDialog(Resource.GetString("DonatePage_DonateValidationDialog/Description"),
+                    Resource.GetString("DonatePage_DonateValidationDialog/Title"));
                 await dialog.ShowAsync();
                 return;
             }
