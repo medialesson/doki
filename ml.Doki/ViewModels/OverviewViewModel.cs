@@ -68,15 +68,21 @@ namespace ml.Doki.ViewModels
             foreach(var month in monthlyDonations)
             {
                 var currentMonthDonators = new List<Donator>();
-                // Loop through each donation during the current month
+
+                // Select all donations of the current month
                 var nameGroups = month.ToList().GroupBy(d => d.FullName);
+
+                // Select donator with most donations during the current month
+                var trendingDonation = nameGroups.OrderByDescending(d => d.Count()).FirstOrDefault().ToList().FirstOrDefault();
+
+                // Loop through each donation during the current month
                 foreach (var name in nameGroups)
                 {
                     // Map to donators based on groups
                     var donator = new Donator
                     {
                         FullName = name.Key,
-                        TotalAmount = name.Sum(x => x.Amount)
+                        TotalAmount = name.Sum(x => x.Amount),
                     };
 
                     // Load image
@@ -85,10 +91,17 @@ namespace ml.Doki.ViewModels
                     {
                         donator.AvatarSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
                     }
+                    
+                    // Reward for trending donator
+                    donator.Rewards.IsTrending = trendingDonation.FullName == name.Key;
 
                     // Add to list
                     currentMonthDonators.Add(donator);
                 }
+
+                // Select donator with most valuable donations during the current month
+                var mostValuableDonation = currentMonthDonators.ToList().OrderByDescending(d => d.TotalAmount).FirstOrDefault();
+                mostValuableDonation.Rewards.IsMostValuable = true;
 
                 // Sort by total amount
                 currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();

@@ -14,5 +14,7 @@ namespace ml.Doki.Models
         public ImageSource AvatarSource { get; set; }
 
         public decimal TotalAmount { get; set; }
+
+        public Rewards Rewards { get; set; } = new Rewards();
     }
 }
