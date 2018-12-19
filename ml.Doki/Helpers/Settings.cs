@@ -14,6 +14,8 @@ namespace ml.Doki.Helpers
 
         public string ApplicationCultureName { get; private set; }
 
+        public CultureInfo ApplicationCultureInfo => new CultureInfo(ApplicationCultureName);
+
 
         public string AppCenterId { get; private set; }
 
