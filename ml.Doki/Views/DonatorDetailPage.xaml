@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="ml.Doki.Views.DonatorDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:ml.Doki.Helpers.Converters"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converters:DecimalToStringCurrencyConverter x:Key="decimalToStringCurrencyConverter"/>
+    </Page.Resources>
+
+    <Grid x:Name="ContentArea">
+        <ScrollViewer>
+            <StackPanel>
+                <Grid>
+                    <Grid Margin="{StaticResource MediumTopBottomMargin}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid Width="80" Height="80" CornerRadius="360">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{ThemeResource SystemBaseMediumHighColor}"/>
+                                </Grid.Background>
+                                <Ellipse>
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Donator.AvatarSource, Mode=OneWay}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Margin="{StaticResource MediumLeftMargin}">
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Donator.FullName, Mode=OneWay}" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                                <!--<TextBlock Text="{Binding Donator.TotalAmount, Mode=OneWay}" Style="{ThemeResource BodyTextStyle}"/>-->
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid>
+                    <ListView ItemsSource="{Binding Donations, Mode=OneWay}"
+                              SelectionMode="None"
+                              Margin="{StaticResource SmallTopMargin}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="{StaticResource SmallTopBottomMargin}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding DonatedAt}" Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                        <TextBlock Text="{Binding Amount, Converter={StaticResource decimalToStringCurrencyConverter}}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

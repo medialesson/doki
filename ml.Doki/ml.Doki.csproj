@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\DonateViewModel.cs" />
     <Compile Include="ViewModels\DonationConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\DonatorDetailViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="ViewModels\PivotViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
@@ -147,6 +148,9 @@
     </Compile>
     <Compile Include="Views\DonationConfirmationPage.xaml.cs">
       <DependentUpon>DonationConfirmationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DonatorDetailPage.xaml.cs">
+      <DependentUpon>DonatorDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
@@ -203,6 +207,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DonationConfirmationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DonatorDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

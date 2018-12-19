@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:models="using:ml.Doki.Models"
     xmlns:converters="using:ml.Doki.Helpers.Converters"
     Style="{StaticResource PageStyle}"
@@ -27,7 +29,14 @@
                 <SemanticZoom.ZoomedInView>
                     <ListView ItemsSource="{x:Bind DonatorsPerMonth.View, Mode=OneWay}"
                               ItemTemplate="{StaticResource DonatorListItemTemplate}"
-                              SelectionMode="None">
+                              SelectedItem="{Binding SelectedDonator, Mode=TwoWay}"
+                              SelectionMode="Single" IsItemClickEnabled="True">
+
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding SelectDonatorCommand}" />
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
 
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>

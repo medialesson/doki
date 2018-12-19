@@ -7,6 +7,7 @@ using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Models.Grouping;
 using ml.Doki.Services;
+using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -19,6 +20,10 @@ namespace ml.Doki.ViewModels
         public ObservableCollection<Donator> Donators { get => _donators; set => Set(ref _donators, value); }
 
 
+        private Donator _selectedDonator;
+        public Donator SelectedDonator { get => _selectedDonator; set => Set(ref _selectedDonator, value); }
+
+
         private ObservableCollection<DonatorsPerMonthGroup> _donatorsPerMonth;
         public ObservableCollection<DonatorsPerMonthGroup> DonatorsPerMonth
         {
@@ -29,6 +34,9 @@ namespace ml.Doki.ViewModels
 
         public ICommand LoadCommand { get; }
 
+        public ICommand SelectDonatorCommand { get; set; }
+
+
         public OverviewViewModel()
         {
             // Set properties
@@ -37,6 +45,8 @@ namespace ml.Doki.ViewModels
 
             // Set commands
             LoadCommand = new RelayCommand(Load);
+            SelectDonatorCommand = new RelayCommand(SelectDonator);
+
             LoadCommand.Execute(null);
         }
 
@@ -85,6 +95,30 @@ namespace ml.Doki.ViewModels
 
                 DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
             }
+        }
+
+        public async void SelectDonator()
+        {
+            if (SelectedDonator == null)
+                return;
+
+
+            var page = new DonatorDetailPage();
+            page.ViewModel.Donator = SelectedDonator;
+
+            page.ViewModel.Donations = new ObservableCollection<Donation>((
+                await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync())
+                    .Where(d => d.FullName == SelectedDonator.FullName));
+
+            var dialog = new ContentDialog
+            {
+                Content = page,
+
+                PrimaryButtonText = "Close",
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            await dialog.ShowAsync();
         }
     }
 }

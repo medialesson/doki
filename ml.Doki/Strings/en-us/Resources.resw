@@ -149,4 +149,8 @@
     <value>Configuration</value>
     <comment>Pivot item header for Configuration</comment>
   </data>
+  <data name="PivotItem_DonatorDetail.Header" xml:space="preserve">
+    <value>DonatorDetail</value>
+    <comment>Pivot item header for DonatorDetail</comment>
+  </data>
 </root>
