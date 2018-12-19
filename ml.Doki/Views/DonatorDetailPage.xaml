@@ -13,54 +13,75 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <ScrollViewer>
-            <StackPanel>
-                <Grid>
-                    <Grid Margin="{StaticResource MediumTopBottomMargin}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                        <Grid Grid.Column="0">
-                            <Grid Width="80" Height="80" CornerRadius="360">
-                                <Grid.Background>
-                                    <SolidColorBrush Color="{ThemeResource SystemBaseMediumHighColor}"/>
-                                </Grid.Background>
-                                <Ellipse>
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Donator.AvatarSource, Mode=OneWay}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                            </Grid>
-                        </Grid>
+            <Grid Grid.Row="0">
+                <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Column="1" Margin="{StaticResource MediumLeftMargin}">
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Donator.FullName, Mode=OneWay}" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-                                <!--<TextBlock Text="{Binding Donator.TotalAmount, Mode=OneWay}" Style="{ThemeResource BodyTextStyle}"/>-->
-                            </StackPanel>
+                    <Grid Grid.Column="0">
+                        <Grid Width="80" Height="80"
+                              VerticalAlignment="Center"
+                              CornerRadius="360">
+                            <Grid.Background>
+                                <SolidColorBrush Color="{StaticResource SystemBaseLowColor}"/>
+                            </Grid.Background>
+
+                            <SymbolIcon Symbol="Contact"/>
+                            
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Donator.AvatarSource, Mode=OneWay}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
                         </Grid>
                     </Grid>
-                </Grid>
 
-                <Grid>
-                    <ListView ItemsSource="{Binding Donations, Mode=OneWay}"
-                              SelectionMode="None"
-                              Margin="{StaticResource SmallTopMargin}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="{StaticResource SmallTopBottomMargin}">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding DonatedAt, Converter={StaticResource dateToRelativeTimeConverter}}" Style="{ThemeResource CaptionSubtitleStyle}"/>
-                                        <TextBlock Text="{Binding Amount, Converter={StaticResource decimalToStringCurrencyConverter}}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Grid Grid.Column="1" Margin="{StaticResource MediumLeftMargin}">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Donator.FullName, Mode=OneWay}" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Donator.TotalAmount, Converter={StaticResource decimalToStringCurrencyConverter}, Mode=OneWay}"
+                                           Style="{ThemeResource CaptionSubtitleStyle}"/>
+
+                                <TextBlock Style="{ThemeResource CaptionSubtitleStyle}"
+                                           Margin="{StaticResource TextSpaceLeftMargin}">
+                                        lifetime support
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
-            </StackPanel>
-        </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <ListView ItemsSource="{Binding Donations, Mode=OneWay}"
+                          SelectionMode="None"
+                          Margin="{StaticResource SmallTopMargin}">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition IsStaggeringEnabled="True" FromHorizontalOffset="30"/>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="{StaticResource SmallTopBottomMargin}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding DonatedAt, Converter={StaticResource dateToRelativeTimeConverter}}" Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                    <TextBlock Text="{Binding Amount, Converter={StaticResource decimalToStringCurrencyConverter}}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
