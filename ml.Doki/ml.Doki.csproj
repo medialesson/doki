@@ -134,6 +134,7 @@
     <Compile Include="Models\Donator.cs" />
     <Compile Include="Models\Grouping\DonationsPerMonthGroup.cs" />
     <Compile Include="Models\Grouping\DonatorsPerMonthGroup.cs" />
+    <Compile Include="Models\Rewards.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\ContactService.cs" />
@@ -262,6 +263,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="ml.Doki_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\de-de\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

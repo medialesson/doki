@@ -9,6 +9,7 @@ using ml.Doki.Models.Grouping;
 using ml.Doki.Services;
 using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -16,6 +17,11 @@ namespace ml.Doki.ViewModels
 {
     public class OverviewViewModel : Observable
     {
+        #region Resource
+        private ResourceLoader Resource { get; }
+        #endregion
+
+        #region Properties
         private ObservableCollection<Donator> _donators;
         public ObservableCollection<Donator> Donators { get => _donators; set => Set(ref _donators, value); }
 
@@ -30,15 +36,19 @@ namespace ml.Doki.ViewModels
             get => _donatorsPerMonth;
             set => Set(ref _donatorsPerMonth, value);
         }
+        #endregion
 
-
+        #region Commands
         public ICommand LoadCommand { get; }
 
         public ICommand SelectDonatorCommand { get; set; }
-
+        #endregion
 
         public OverviewViewModel()
         {
+            // Set resource manager
+            Resource = ResourceLoader.GetForCurrentView();
+
             // Set properties
             Donators = new ObservableCollection<Donator>();
             DonatorsPerMonth = new ObservableCollection<DonatorsPerMonthGroup>();
@@ -68,15 +78,21 @@ namespace ml.Doki.ViewModels
             foreach(var month in monthlyDonations)
             {
                 var currentMonthDonators = new List<Donator>();
-                // Loop through each donation during the current month
+
+                // Select all donations of the current month
                 var nameGroups = month.ToList().GroupBy(d => d.FullName);
+
+                // Select donator with most donations during the current month
+                var trendingDonation = nameGroups.OrderByDescending(d => d.Count()).FirstOrDefault().ToList().FirstOrDefault();
+
+                // Loop through each donation during the current month
                 foreach (var name in nameGroups)
                 {
                     // Map to donators based on groups
                     var donator = new Donator
                     {
                         FullName = name.Key,
-                        TotalAmount = name.Sum(x => x.Amount)
+                        TotalAmount = name.Sum(x => x.Amount),
                     };
 
                     // Load image
@@ -85,10 +101,17 @@ namespace ml.Doki.ViewModels
                     {
                         donator.AvatarSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
                     }
+                    
+                    // Reward for trending donator
+                    donator.Rewards.IsTrending = trendingDonation.FullName == name.Key;
 
                     // Add to list
                     currentMonthDonators.Add(donator);
                 }
+
+                // Select donator with most valuable donations during the current month
+                var mostValuableDonation = currentMonthDonators.ToList().OrderByDescending(d => d.TotalAmount).FirstOrDefault();
+                mostValuableDonation.Rewards.IsMostValuable = true;
 
                 // Sort by total amount
                 currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();
@@ -123,7 +146,7 @@ namespace ml.Doki.ViewModels
             {
                 Content = page,
 
-                PrimaryButtonText = "Close",
+                PrimaryButtonText = Resource.GetString("OverviewPage_SelectDonatorDialog/PrimaryButtonText"),
                 DefaultButton = ContentDialogButton.Primary
             };
 

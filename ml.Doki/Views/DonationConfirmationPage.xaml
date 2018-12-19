@@ -10,13 +10,11 @@
         <Grid>
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
-                           TextAlignment="Center">
-                    Thank you for your donation
-                </TextBlock>
+                           TextAlignment="Center"
+                           x:Uid="DonationConfirmationPage_Title"/>
                 <TextBlock Style="{ThemeResource CaptionSubtitleStyle}"
-                           TextAlignment="Center">
-                    Stay awesome
-                </TextBlock>
+                           TextAlignment="Center"
+                           x:Uid="DonationConfirmationPage_Description"/>
                 <Image Source="/Assets/Objects/Beers.png"
                        Height="200" VerticalAlignment="Center"
                        Margin="{StaticResource MediumTopBottomMargin}"
