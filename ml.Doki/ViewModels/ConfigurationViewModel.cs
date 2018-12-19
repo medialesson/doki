@@ -40,6 +40,22 @@ namespace ml.Doki.ViewModels
         }
 
 
+        private string _remoteGetEndpoint;
+        public string RemoteGetEndpoint
+        {
+            get => _remoteGetEndpoint;
+            set => Set(ref _remoteGetEndpoint, value);
+        }
+
+
+        private string _remotePostEndpoint;
+        public string RemotePostEndpoint
+        {
+            get => _remotePostEndpoint;
+            set => Set(ref _remotePostEndpoint, value);
+        }
+
+
         public ICommand LoadCommand { get; }
 
         public ICommand SaveCommand { get; }
@@ -62,6 +78,8 @@ namespace ml.Doki.ViewModels
             SelectedCurrencyLocale = Singleton<Settings>.Instance.ApplicationCultureName;
 
             AppCenterId = Singleton<Settings>.Instance.AppCenterId;
+            RemoteGetEndpoint = Singleton<Settings>.Instance.RemoteGetEndpoint;
+            RemotePostEndpoint = Singleton<Settings>.Instance.RemotePostEndpoint;
         }
 
         public async void Save()
@@ -70,6 +88,7 @@ namespace ml.Doki.ViewModels
             await Singleton<Settings>.Instance.SetApplicationCultureNameAsync(this.SelectedCurrencyLocale);
 
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
+            await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
 
             await new MessageDialog("Settings were saved and will be applied when you restart the app.").ShowAsync();
         }
