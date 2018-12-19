@@ -45,7 +45,7 @@ namespace ml.Doki.ViewModels
 
             // Set commands
             LoadCommand = new RelayCommand(Load);
-            SelectDonatorCommand = new RelayCommand(SelectDonator);
+            SelectDonatorCommand = new RelayCommand<ItemClickEventArgs>(SelectDonator);
 
             LoadCommand.Execute(null);
         }
@@ -97,8 +97,9 @@ namespace ml.Doki.ViewModels
             }
         }
 
-        public async void SelectDonator()
+        public async void SelectDonator(ItemClickEventArgs args)
         {
+            SelectedDonator = args.ClickedItem as Donator;
             if (SelectedDonator == null)
                 return;
 

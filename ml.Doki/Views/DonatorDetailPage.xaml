@@ -74,7 +74,9 @@
                         <DataTemplate>
                             <Grid Margin="{StaticResource SmallTopBottomMargin}">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding DonatedAt, Converter={StaticResource dateToRelativeTimeConverter}}" Style="{ThemeResource CaptionSubtitleStyle}"/>
+                                    <TextBlock Text="{Binding DonatedAt, Converter={StaticResource dateToRelativeTimeConverter}}"
+                                               ToolTipService.ToolTip="{Binding DonatedAt}"
+                                               Style="{ThemeResource CaptionSubtitleStyle}"/>
                                     <TextBlock Text="{Binding Amount, Converter={StaticResource decimalToStringCurrencyConverter}}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                                 </StackPanel>
                             </Grid>
