@@ -15,7 +15,7 @@
                             <TextBox Text="{Binding AboutText, Mode=TwoWay}"
                                      TextWrapping="Wrap"
                                      AcceptsReturn="True"
-                                     Height="80"
+                                     Height="130"
                                      x:Uid="ConfigurationPage_ContentAboutDescription"/>
 
                             <!--<ComboBox Header="Language Locale"
@@ -35,7 +35,7 @@
                     <ScrollViewer Margin="{StaticResource SmallTopBottomMargin}">
                         <StackPanel>
                             <TextBox Text="{Binding AppCenterId, Mode=TwoWay}"
-                                     x:Uid="ConfigurationPage_ApiAppCenterId"/>
+                                     Header="App Center ID"/>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>

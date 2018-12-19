@@ -14,7 +14,14 @@ namespace ml.Doki.Helpers
 
         public string ApplicationCultureName { get; private set; }
 
+        public CultureInfo ApplicationCultureInfo => new CultureInfo(ApplicationCultureName);
+
+
         public string AppCenterId { get; private set; }
+
+        public string RemoteGetEndpoint { get; private set; }
+
+        public string RemotePostEndpoint { get; private set; }
 
 
         public async Task InitializeAsync()
@@ -23,6 +30,8 @@ namespace ml.Doki.Helpers
             ApplicationCultureName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(ApplicationCultureName)) ?? "en-us";
 
             AppCenterId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AppCenterId));
+            RemoteGetEndpoint = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(RemoteGetEndpoint));
+            RemotePostEndpoint = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(RemotePostEndpoint));
         }
 
         public async Task SetAboutTextAsync(string text)
@@ -50,6 +59,13 @@ namespace ml.Doki.Helpers
                 "en-us",
                 "de-de"
             });
+        }
+
+        public async Task SetRemoteEndpointsAsync(string remoteGetEndpoint, string remotePostEndpoint)
+        {
+            await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(RemoteGetEndpoint), remoteGetEndpoint);
+            await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(RemotePostEndpoint), remotePostEndpoint);
+            await InitializeAsync();
         }
     }
 }

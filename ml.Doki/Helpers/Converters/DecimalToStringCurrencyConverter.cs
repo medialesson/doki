@@ -12,8 +12,7 @@ namespace ml.Doki.Helpers.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var locale = Singleton<Settings>.Instance.ApplicationCultureName;
-            var cultureInfo = new CultureInfo(locale);
+            var cultureInfo = Singleton<Settings>.Instance.ApplicationCultureInfo;
             decimal input;
 
             if (!decimal.TryParse(value.ToString(), NumberStyles.Currency, cultureInfo, out input))
