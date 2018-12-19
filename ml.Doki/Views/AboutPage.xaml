@@ -11,18 +11,14 @@
             <StackPanel>
                 <!-- TODO: Move to settings -->
                 <StackPanel Margin="{StaticResource XXSmallTopMargin}">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
-                        Where goes my money?
-                    </TextBlock>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_DonationTargetTitle"/>
                     <TextBlock Text="{Binding AboutText, Mode=OneWay}"
                                Style="{ThemeResource BodyTextBlockStyle}"
                                Margin="{StaticResource XXSmallTopMargin}"/>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
-                        About
-                    </TextBlock>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Title"/>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                                Margin="{StaticResource XXSmallTopMargin}">
                         Developed by Gino Messmer &amp; Samuel Oechsler.
@@ -31,9 +27,7 @@
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">
-                        Licenses
-                    </TextBlock>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Licenses"/>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                                Margin="{StaticResource XXSmallTopMargin}">
                         <Span>

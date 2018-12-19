@@ -125,32 +125,101 @@
     <value>ml.Doki</value>
     <comment>Application description</comment>
   </data>
-  <data name="PivotItem_Donate.Header" xml:space="preserve">
+  <data name="PivotPage_Donate.Header" xml:space="preserve">
     <value>Donate</value>
     <comment>Pivot item header for Donate</comment>
   </data>
-  <data name="PivotItem_Overview.Header" xml:space="preserve">
+  <data name="PivotPage_Overview.Header" xml:space="preserve">
     <value>Overview</value>
     <comment>Pivot item header for Overview</comment>
   </data>
-  <data name="PivotItem_About.Header" xml:space="preserve">
+  <data name="PivotPage_About.Header" xml:space="preserve">
     <value>About</value>
     <comment>Pivot item header for About</comment>
-  </data>
-  <data name="PivotItem_DonationConfirmation.Header" xml:space="preserve">
-    <value>DonationConfirmation</value>
-    <comment>Pivot item header for DonationConfirmation</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
-  <data name="PivotItem_Configuration.Header" xml:space="preserve">
-    <value>Configuration</value>
-    <comment>Pivot item header for Configuration</comment>
+  <data name="AboutPage_DevsDescription.Text" xml:space="preserve">
+    <value>TODO: Find out how to embed stuff here first</value>
   </data>
-  <data name="PivotItem_DonatorDetail.Header" xml:space="preserve">
-    <value>DonatorDetail</value>
-    <comment>Pivot item header for DonatorDetail</comment>
+  <data name="AboutPage_DonationTargetTitle.Text" xml:space="preserve">
+    <value>Where goes my money?</value>
+  </data>
+  <data name="AboutPage_Licenses.Text" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="AboutPage_LicensesInfo.Text" xml:space="preserve">
+    <value>TODO: Find out how to embed stuff here first</value>
+  </data>
+  <data name="AboutPage_Title.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ConfigurationPage_Api.Header" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="ConfigurationPage_ApiAppCenterId.Header" xml:space="preserve">
+    <value>App Center ID</value>
+  </data>
+  <data name="ConfigurationPage_Content.Header" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="ConfigurationPage_ContentAboutDescription.Header" xml:space="preserve">
+    <value>About text</value>
+  </data>
+  <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
+    <value>Currency local</value>
+  </data>
+  <data name="ConfigurationPage_SaveDialog.Description" xml:space="preserve">
+    <value>Settings have been applied.</value>
+  </data>
+  <data name="ConfigurationPage_SaveDialog.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonatePage_ContactImageDescription.Text" xml:space="preserve">
+    <value>Choose from staff</value>
+  </data>
+  <data name="DonatePage_DonateConfirmationDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="DonatePage_DonateValidationDialog.Description" xml:space="preserve">
+    <value>Please check all required fields and try again.</value>
+  </data>
+  <data name="DonatePage_DonateValidationDialog.Title" xml:space="preserve">
+    <value>Your input is not valid</value>
+  </data>
+  <data name="DonatePage_DonationAmount.Header" xml:space="preserve">
+    <value>Your pledge</value>
+  </data>
+  <data name="DonatePage_DonationName.Header" xml:space="preserve">
+    <value>Your name</value>
+  </data>
+  <data name="DonatePage_DonationName.PlaceholderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonatePage_OpenConfigurationsDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DonatePage_OpenConfigurationsDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="DonatePage_SettingsMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="DonationConfirmationPage_Description.Text" xml:space="preserve">
+    <value>Stay awesome</value>
+  </data>
+  <data name="DonationConfirmationPage_Title.Text" xml:space="preserve">
+    <value>Thank you for your donation</value>
+  </data>
+  <data name="DonatorDetailPage_SupportType.Text" xml:space="preserve">
+    <value>lifetime support</value>
+  </data>
+  <data name="OverviewPage_RefreshButton.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="OverviewPage_SelectDonatorDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Close</value>
   </data>
 </root>

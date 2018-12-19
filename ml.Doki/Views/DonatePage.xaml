@@ -37,8 +37,8 @@
                             <TextBlock Style="{ThemeResource BaseTextBlockStyle}"
                                        Margin="{StaticResource SmallTopMargin}"
                                        FontSize="12"
-                                       TextAlignment="Center">
-                                Choose from staff
+                                       TextAlignment="Center"
+                                       x:Uid="DonatePage_ContactImageDescription">
                             </TextBlock>
                         </StackPanel>
                     </Grid>
@@ -53,9 +53,8 @@
                 <AutoSuggestBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
                                 ItemsSource="{Binding DonationNameAutoSuggestList, Mode=OneWay}"
                                 Margin="{StaticResource MediumTopMargin}"
-                                Header="Your name"
                                 HorizontalAlignment="Stretch"
-                                PlaceholderText="">
+                                x:Uid="DonatePage_DonationName">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="TextChanged">
                             <core:InvokeCommandAction Command="{Binding PopulateAutoSuggestNamesCommand}"/>
@@ -76,11 +75,11 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0"
                              Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
+                             PlaceholderText="{Binding CurrencyPlaceholder}"
                              Margin="{StaticResource SmallTopMargin}"
-                             Header="Your pledge"
                              HorizontalAlignment="Stretch"
-                             PlaceholderText="1,00"
-                             InputScope="CurrencyAmount"/>
+                             InputScope="CurrencyAmount"
+                             x:Uid="DonatePage_DonationAmount"/>
                     <Button Grid.Column="1"
                             Command="{Binding FetchAverageDonationAmountCommand}"
                             VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
@@ -100,11 +99,10 @@
                     Height="60" HorizontalAlignment="Stretch">
                 <Button.ContextFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Command="{Binding OpenConfigurationsCommand}">
+                        <MenuFlyoutItem Command="{Binding OpenConfigurationsCommand}" x:Uid="DonatePage_SettingsMenuFlyoutItem">
                             <MenuFlyoutItem.Icon>
                                 <SymbolIcon Symbol="Setting"/>
                             </MenuFlyoutItem.Icon>
-                            Settings
                         </MenuFlyoutItem>
                     </MenuFlyout>
                 </Button.ContextFlyout>

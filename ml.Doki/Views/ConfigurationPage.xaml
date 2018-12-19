@@ -9,33 +9,33 @@
     <Grid x:Name="ContentArea">
         <Grid>
             <Pivot>
-                <PivotItem Header="Content">
+                <PivotItem x:Uid="ConfigurationPage_Content">
                     <ScrollViewer Margin="{StaticResource SmallTopBottomMargin}">
                         <StackPanel>
                             <TextBox Text="{Binding AboutText, Mode=TwoWay}"
-                                     Header="About text"
                                      TextWrapping="Wrap"
                                      AcceptsReturn="True"
-                                     Height="80"/>
+                                     Height="80"
+                                     x:Uid="ConfigurationPage_ContentAboutDescription"/>
 
                             <!--<ComboBox Header="Language Locale"
                                       ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
                                       Margin="{StaticResource SmallTopMargin}"
                                       HorizontalAlignment="Stretch"/>-->
 
-                            <ComboBox Header="Currency Locale"
-                                      ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
+                            <ComboBox ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
                                       SelectedItem="{Binding SelectedCurrencyLocale, Mode=TwoWay}"
                                       Margin="{StaticResource SmallTopMargin}"
-                                      HorizontalAlignment="Stretch"/>
+                                      HorizontalAlignment="Stretch"
+                                      x:Uid="ConfigurationPage_ContentCurrencyLocal"/>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem Header="API">
+                <PivotItem x:Uid="ConfigurationPage_Api">
                     <ScrollViewer Margin="{StaticResource SmallTopBottomMargin}">
                         <StackPanel>
                             <TextBox Text="{Binding AppCenterId, Mode=TwoWay}"
-                                     Header="App Center ID"/>
+                                     x:Uid="ConfigurationPage_ApiAppCenterId"/>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>

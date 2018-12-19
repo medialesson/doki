@@ -4,12 +4,14 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
+using Humanizer.Localisation;
 using Microsoft.AppCenter.Analytics;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Services;
 using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -19,6 +21,10 @@ namespace ml.Doki.ViewModels
 {
     public class DonateViewModel : Observable
     {
+        #region Resource
+        private ResourceLoader Resource { get; }
+        #endregion
+
         #region Properties
         private ImageSource _currentDonatorImageSource;
         public ImageSource CurrentDonatorImageSource
@@ -54,6 +60,13 @@ namespace ml.Doki.ViewModels
             set => Set(ref _donationNameAutoSuggestList, value);
         }
 
+        private string _currencyPlaceholder;
+        public string CurrencyPlaceholder
+        {
+            get => _currencyPlaceholder;
+            set => Set(ref _currencyPlaceholder, value);
+        }
+
         private string _currencySymbol;
         public string CurrencySymbol
         {
@@ -83,8 +96,12 @@ namespace ml.Doki.ViewModels
 
         public DonateViewModel()
         {
+            // Set resource manager
+            Resource = ResourceLoader.GetForCurrentView();
+
             // Set properties
             DonationNameAutoSuggestList = new ObservableCollection<string>();
+            FetchCurrencyPlaceholder();
             FetchCurrencySymbol();
 
             // Set commands
@@ -97,13 +114,13 @@ namespace ml.Doki.ViewModels
             FetchAverageDonationAmountCommand = new RelayCommand(AssignAverageDonationAmount);
         }
 
-
         public async void Donate()
         {
             // Do validation
             if (!IsInputValid())
             {
-                var dialog = new MessageDialog("Please check all required fields and try again.", "Your input is not valid");
+                var dialog = new MessageDialog(Resource.GetString("DonatePage_DonateValidationDialog/Title"),
+                    Resource.GetString("DonatePage_DonateValidationDialog/Description"));
                 await dialog.ShowAsync();
                 return;
             }
@@ -127,7 +144,7 @@ namespace ml.Doki.ViewModels
             {
                 Content = new DonationConfirmationPage(),
 
-                PrimaryButtonText = "Dismiss",
+                PrimaryButtonText = Resource.GetString("DonatePage_DonateConfirmationDialog/PrimaryButtonText"),
                 DefaultButton = ContentDialogButton.Primary
             };
 
@@ -191,10 +208,10 @@ namespace ml.Doki.ViewModels
                 {
                     Content = configurationPage,
 
-                    PrimaryButtonText = "Apply",
+                    PrimaryButtonText = Resource.GetString("DonatePage_OpenConfigurationsDialog/PrimaryButtonText"),
                     PrimaryButtonCommand = configurationPage.ViewModel.SaveCommand,
 
-                    CloseButtonText = "Cancel",
+                    CloseButtonText = Resource.GetString("DonatePage_OpenConfigurationsDialog/CloseButtonText"),
 
                     DefaultButton = ContentDialogButton.Primary
                 };
@@ -227,6 +244,14 @@ namespace ml.Doki.ViewModels
             var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault().ToList();
             var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), cultureInfo));
             CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
+        }
+
+        public void FetchCurrencyPlaceholder()
+        {
+            var locale = Singleton<Settings>.Instance.ApplicationCultureName;
+            var cultureInfo = new CultureInfo(locale);
+
+            CurrencyPlaceholder = 1.ToString("F2", cultureInfo);
         }
 
         public void FetchCurrencySymbol()

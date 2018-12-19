@@ -83,7 +83,9 @@
 
         <Grid Grid.Row="1">
             <CommandBar Style="{StaticResource CommandBarTransparent}">
-                <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadCommand}"/>
+                <AppBarButton Icon="Refresh"
+                              Command="{Binding LoadCommand}"
+                              x:Uid="OverviewPage_RefreshButton"/>
             </CommandBar>
         </Grid>
     </Grid>

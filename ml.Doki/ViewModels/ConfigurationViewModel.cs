@@ -2,12 +2,18 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ml.Doki.Helpers;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 
 namespace ml.Doki.ViewModels
 {
     public class ConfigurationViewModel : Observable
     {
+        #region Resource
+        private ResourceLoader Resource { get; }
+        #endregion
+
+        #region Properties
         private string _aboutText;
         public string AboutText
         {
@@ -38,15 +44,20 @@ namespace ml.Doki.ViewModels
             get => _appCenterId;
             set => Set(ref _appCenterId, value);
         }
+        #endregion
 
-
+        #region Commands
         public ICommand LoadCommand { get; }
 
         public ICommand SaveCommand { get; }
-
+        #endregion
 
         public ConfigurationViewModel()
         {
+            // Set resource manager
+            Resource = ResourceLoader.GetForCurrentView();
+
+            // Set commands
             LoadCommand = new RelayCommand(Load);
             SaveCommand = new RelayCommand(Save);
 
@@ -71,11 +82,13 @@ namespace ml.Doki.ViewModels
 
             // TODO: Is this legit?
             Singleton<DonateViewModel>.Instance.FetchCurrencySymbol();
+            Singleton<DonateViewModel>.Instance.FetchCurrencyPlaceholder();
             Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
+            Singleton<AboutViewModel>.Instance.LoadCommand.Execute(null);
 
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
 
-            await new MessageDialog("Settings were saved and will be applied when you restart the app.").ShowAsync();
+            await new MessageDialog(Resource.GetString("ConfigurationPage_SaveDialog/Description")).ShowAsync();
         }
     }
 }
