@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
 namespace ml.Doki.Helpers
@@ -27,7 +28,7 @@ namespace ml.Doki.Helpers
         public async Task InitializeAsync()
         {
             AboutText = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AboutText));
-            ApplicationCultureName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(ApplicationCultureName)) ?? "en-us";
+            ApplicationCultureName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(ApplicationCultureName)) ?? "en-US";
 
             AppCenterId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AppCenterId));
             RemoteGetEndpoint = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(RemoteGetEndpoint));
