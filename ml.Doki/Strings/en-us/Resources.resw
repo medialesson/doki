@@ -142,19 +142,33 @@
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
   <data name="AboutPage_DevsDescription.Text" xml:space="preserve">
-    <value>TODO: Find out how to embed stuff here first</value>
-  </data>
-  <data name="AboutPage_DonationTargetTitle.Text" xml:space="preserve">
-    <value>Where goes my money?</value>
+    <value>Developed by Gino Messmer &amp; Samuel Oechsler.  
+Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="AboutPage_Licenses.Text" xml:space="preserve">
     <value>Licenses</value>
   </data>
-  <data name="AboutPage_LicensesInfo.Text" xml:space="preserve">
-    <value>TODO: Find out how to embed stuff here first</value>
-  </data>
-  <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>About</value>
+  <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
+    <value>Third-party software acknowledgements
+
+### Humanizer
+https://github.com/Humanizr/Humanizer  
+Copyright &amp;copy; .NET Foundation and Contributors  
+Licensed under [MIT License](https://github.com/Humanizr/Humanizer/blob/master/LICENSE)
+
+### Inflector
+https://github.com/srkirkland/Inflector  
+Copyright &amp;copy; 2013 Scott Kirkland  
+Licensed under [MIT License](https://github.com/srkirkland/Inflector/blob/master/LICENSE.txt)
+
+### ByteSize
+https://github.com/omar/ByteSize  
+Copyright &amp;copy; 2013-2014 Omar Khudeira  
+Lizensiert under [MIT License](https://github.com/omar/ByteSize/blob/master/LICENSE)
+
+### Beer icon
+Entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/)  
+Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -166,7 +180,7 @@
     <value>Content</value>
   </data>
   <data name="ConfigurationPage_ContentAboutDescription.Header" xml:space="preserve">
-    <value>About text</value>
+    <value>About content</value>
   </data>
   <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
     <value>Currency local</value>
@@ -230,5 +244,29 @@
   </data>
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
     <value>Trending</value>
+  </data>
+  <data name="DonatePage_CommitException.Content" xml:space="preserve">
+    <value>An error occured while committing your donation. Please try again or reach out to your system administrator for further assistance.</value>
+  </data>
+  <data name="OverviewPage_FetchException.Content" xml:space="preserve">
+    <value>Unable to fetch all donations. Please contact the administrator for assistance.</value>
+  </data>
+  <data name="ConfigurationPage_ContentAboutDescription.PlaceholderText" xml:space="preserve">
+    <value>## Where the money will be going
+
+- Enter a set of reasons that describe your cause
+- This text field can be styled with Markdown</value>
+  </data>
+  <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
+    <value>List Remote Endpoint</value>
+  </data>
+  <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
+    <value>Store Remote Endpoint</value>
+  </data>
+  <data name="AppVersionFormat" xml:space="preserve">
+    <value>{0}.{1} Build {2}</value>
+  </data>
+  <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
+    <value>Enable API</value>
   </data>
 </root>

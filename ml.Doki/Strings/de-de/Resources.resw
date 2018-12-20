@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>ml.Doki</value>
+    <value>Doki</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>ml.Doki</value>
+    <value>Doki (engl. "Donation Kiosk") ist eine Companion-App für die vereinsamte Kaffeekasse im Büro und Teams die schnell und einfach Spenden überblicken wollen.</value>
     <comment>Application description</comment>
   </data>
   <data name="PivotPage_Donate.Header" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>Pivot item header for Donate</comment>
   </data>
   <data name="PivotPage_Overview.Header" xml:space="preserve">
-    <value>Übersicht</value>
+    <value>Rangliste</value>
     <comment>Pivot item header for Overview</comment>
   </data>
   <data name="PivotPage_About.Header" xml:space="preserve">
@@ -142,19 +142,33 @@
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
   <data name="AboutPage_DevsDescription.Text" xml:space="preserve">
-    <value>TODO: Find out how to embed stuff here first</value>
-  </data>
-  <data name="AboutPage_DonationTargetTitle.Text" xml:space="preserve">
-    <value>Wohin geht meine Spende?</value>
+    <value>Entwickelt von Gino Messmer &amp; Samuel Oechsler.  
+Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="AboutPage_Licenses.Text" xml:space="preserve">
     <value>Lizenzen</value>
   </data>
-  <data name="AboutPage_LicensesInfo.Text" xml:space="preserve">
-    <value>TODO: Find out how to embed stuff here first</value>
-  </data>
-  <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>Über</value>
+  <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
+    <value>Liste mit Angaben zur drittanbieter Software, die in diesem Produkt verwendet wurde.
+
+### Humanizer
+https://github.com/Humanizr/Humanizer  
+Copyright &amp;copy; .NET Foundation and Contributors  
+Lizensiert unter der [MIT License](https://github.com/Humanizr/Humanizer/blob/master/LICENSE)
+
+### Inflector
+https://github.com/srkirkland/Inflector  
+Copyright &amp;copy; 2013 Scott Kirkland  
+Lizensiert unter der [MIT License](https://github.com/srkirkland/Inflector/blob/master/LICENSE.txt)
+
+### ByteSize
+https://github.com/omar/ByteSize  
+Copyright &amp;copy; 2013-2014 Omar Khudeira  
+Lizensiert unter der [MIT License](https://github.com/omar/ByteSize/blob/master/LICENSE)
+
+### Bier Icon
+Entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/)  
+Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -166,13 +180,13 @@
     <value>Inhalt</value>
   </data>
   <data name="ConfigurationPage_ContentAboutDescription.Header" xml:space="preserve">
-    <value>Spendengrund</value>
+    <value>Spendengrund (siehe Über)</value>
   </data>
   <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
-    <value>Währungseinheit</value>
+    <value>Currency local</value>
   </data>
   <data name="ConfigurationPage_SaveDialog.Description" xml:space="preserve">
-    <value>Die Einstellungen wurden übernommen.</value>
+    <value>Einstellungen wurden übernommen.</value>
   </data>
   <data name="ConfigurationPage_SaveDialog.Title" xml:space="preserve">
     <value />
@@ -184,10 +198,10 @@
     <value>Schließen</value>
   </data>
   <data name="DonatePage_DonateValidationDialog.Description" xml:space="preserve">
-    <value>Überprüfe alle Felder und versuche es erneut.</value>
+    <value>Überprüfe die benötigten Felder und versuche es erneut.</value>
   </data>
   <data name="DonatePage_DonateValidationDialog.Title" xml:space="preserve">
-    <value>Eingabe ungültig</value>
+    <value>Ungültige Eingabe</value>
   </data>
   <data name="DonatePage_DonationAmount.Header" xml:space="preserve">
     <value>Spende</value>
@@ -208,16 +222,16 @@
     <value>Einstellungen</value>
   </data>
   <data name="DonationConfirmationPage_Description.Text" xml:space="preserve">
-    <value>Bleib geschmeidig</value>
+    <value>Mach weiter so</value>
   </data>
   <data name="DonationConfirmationPage_Title.Text" xml:space="preserve">
     <value>Vielen Dank für deine Spende</value>
   </data>
   <data name="DonatorDetailPage_SupportType.Text" xml:space="preserve">
-    <value>gesammt gespendet</value>
+    <value>insgesamt</value>
   </data>
   <data name="OverviewPage_RefreshButton.Label" xml:space="preserve">
-    <value>Erneut laden</value>
+    <value>Aktualisieren</value>
   </data>
   <data name="OverviewPage_SelectDonatorDialog.PrimaryButtonText" xml:space="preserve">
     <value>Schließen</value>
@@ -226,9 +240,33 @@
     <value>Spendendurchschnitt einsetzen</value>
   </data>
   <data name="DonatorItemTemplates_RewardMvp.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Am meisten gespendet</value>
+    <value>Höchste Spende</value>
   </data>
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Am häufigsten gespendet</value>
+    <value>Meiste Spenden</value>
+  </data>
+  <data name="ConfigurationPage_ContentAboutDescription.PlaceholderText" xml:space="preserve">
+    <value>## Was mit dem Geld gemacht wird
+
+- Beschreibe, wozu die Spenden verwendet werden
+- Das Textfeld kann in Markdown geschrieben werden</value>
+  </data>
+  <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
+    <value>Bezugs Endpunkt</value>
+  </data>
+  <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
+    <value>Speicher Endpunkt</value>
+  </data>
+  <data name="AppVersionFormat" xml:space="preserve">
+    <value>{0}.{1} Build {2}</value>
+  </data>
+  <data name="DonatePage_CommitException.Content" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim Speichern deiner Spende. Bitte versuche es erneut oder wende dich an den Administrator.</value>
+  </data>
+  <data name="OverviewPage_FetchException.Content" xml:space="preserve">
+    <value>Wir konnten keine Spenden laden. Bitte versuche es erneut oder wende dich an den Administator.</value>
+  </data>
+  <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
+    <value>API verwenden</value>
   </data>
 </root>

@@ -18,11 +18,6 @@
                                      Height="130"
                                      x:Uid="ConfigurationPage_ContentAboutDescription"/>
 
-                            <!--<ComboBox Header="Language Locale"
-                                      ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
-                                      Margin="{StaticResource SmallTopMargin}"
-                                      HorizontalAlignment="Stretch"/>-->
-
                             <ComboBox ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
                                       SelectedItem="{Binding SelectedCurrencyLocale, Mode=TwoWay}"
                                       Margin="{StaticResource SmallTopMargin}"
@@ -36,6 +31,26 @@
                         <StackPanel>
                             <TextBox Text="{Binding AppCenterId, Mode=TwoWay}"
                                      Header="App Center ID"/>
+
+                            <CheckBox Margin="{StaticResource SmallTopMargin}"
+                                      IsChecked="{Binding IsApiEnabled, Mode=TwoWay}"
+                                      x:Uid="ConfigurationPage_ApiCheckbox"/>
+                            
+                            <StackPanel Visibility="{x:Bind ViewModel.IsApiEnabled, Mode=OneWay}">
+                                <StackPanel.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition />
+                                    </TransitionCollection>
+                                </StackPanel.Transitions>
+                                <TextBox Text="{Binding RemotePostEndpoint, Mode=TwoWay}"
+                                         InputScope="Url"
+                                         Margin="{StaticResource SmallTopMargin}"
+                                         x:Uid="ConfigurationPage_ApiGetEndpoint"/>
+                                <TextBox Text="{Binding RemoteGetEndpoint, Mode=TwoWay}"
+                                         InputScope="Url"
+                                         Margin="{StaticResource SmallTopMargin}"
+                                         x:Uid="ConfigurationPage_ApiPostEndpoint"/>
+                            </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>

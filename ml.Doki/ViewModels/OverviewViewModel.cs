@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
@@ -10,6 +12,7 @@ using ml.Doki.Services;
 using ml.Doki.Views;
 using Windows.ApplicationModel.Contacts;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -17,10 +20,6 @@ namespace ml.Doki.ViewModels
 {
     public class OverviewViewModel : Observable
     {
-        #region Resource
-        private ResourceLoader Resource { get; }
-        #endregion
-
         #region Properties
         private ObservableCollection<Donator> _donators;
         public ObservableCollection<Donator> Donators { get => _donators; set => Set(ref _donators, value); }
@@ -54,9 +53,6 @@ namespace ml.Doki.ViewModels
 
         public OverviewViewModel()
         {
-            // Set resource manager
-            Resource = ResourceLoader.GetForCurrentView();
-
             // Set properties
             Donators = new ObservableCollection<Donator>();
             DonatorsPerMonth = new ObservableCollection<DonatorsPerMonthGroup>();
@@ -75,58 +71,67 @@ namespace ml.Doki.ViewModels
             // Clear all previous donations
             DonatorsPerMonth.Clear();
 
-            // Load donations
-            var donations = await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync();
-
-            // Get the donations created during this year
-            donations = donations.Where(d => d.DonatedAt.Year == DateTime.Now.Year).ToList();
-
-            // Group by month
-            var monthlyDonations = donations.GroupBy(d => d.DonatedAt.Month, (key, list) => new DonationsPerMonthGroup(key, list));
-
-            // Loop through each month
-            foreach(var month in monthlyDonations)
+            try
             {
-                var currentMonthDonators = new List<Donator>();
+                // Load donations
+                var donations = await Singleton<DonationRemoteService>.Instance.GetAllDonationsAsync();
 
-                // Select all donations of the current month
-                var nameGroups = month.ToList().GroupBy(d => d.FullName);
+                // Get the donations created during this year
+                donations = donations.Where(d => d.DonatedAt.Year == DateTime.Now.Year).ToList();
 
-                // Select donator with most donations during the current month
-                var trendingDonation = nameGroups.OrderByDescending(d => d.Count()).FirstOrDefault().ToList().FirstOrDefault();
+                // Group by month
+                var monthlyDonations = donations.GroupBy(d => d.DonatedAt.Month, (key, list) => new DonationsPerMonthGroup(key, list));
 
-                // Loop through each donation during the current month
-                foreach (var name in nameGroups)
+                // Loop through each month
+                foreach (var month in monthlyDonations)
                 {
-                    // Map to donators based on groups
-                    var donator = new Donator
-                    {
-                        FullName = name.Key,
-                        TotalAmount = name.Sum(x => x.Amount),
-                    };
+                    var currentMonthDonators = new List<Donator>();
 
-                    // Load image
-                    Contact contact = await Singleton<ContactService>.Instance.GetContactByDisplayNameAsync(donator.FullName);
-                    if(contact != null)
+                    // Select all donations of the current month
+                    var nameGroups = month.ToList().GroupBy(d => d.FullName);
+
+                    // Select donator with most donations during the current month
+                    var trendingDonation = nameGroups.OrderByDescending(d => d.Count()).FirstOrDefault().ToList().FirstOrDefault();
+
+                    // Loop through each donation during the current month
+                    foreach (var name in nameGroups)
                     {
-                        donator.AvatarSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
+                        // Map to donators based on groups
+                        var donator = new Donator
+                        {
+                            FullName = name.Key,
+                            TotalAmount = name.Sum(x => x.Amount),
+                        };
+
+                        // Load image
+                        Contact contact = await Singleton<ContactService>.Instance.GetContactByDisplayNameAsync(donator.FullName);
+                        if (contact != null)
+                        {
+                            donator.AvatarSource = await Singleton<ContactService>.Instance.LoadContactAvatarToBitmapAsync(contact);
+                        }
+
+                        // Reward for trending donator
+                        donator.Rewards.IsTrending = trendingDonation.FullName == name.Key;
+
+                        // Add to list
+                        currentMonthDonators.Add(donator);
                     }
-                    
-                    // Reward for trending donator
-                    donator.Rewards.IsTrending = trendingDonation.FullName == name.Key;
 
-                    // Add to list
-                    currentMonthDonators.Add(donator);
+                    // Select donator with most valuable donations during the current month
+                    var mostValuableDonation = currentMonthDonators.ToList().OrderByDescending(d => d.TotalAmount).FirstOrDefault();
+                    mostValuableDonation.Rewards.IsMostValuable = true;
+
+                    // Sort by total amount
+                    currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();
+                    DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
                 }
-
-                // Select donator with most valuable donations during the current month
-                var mostValuableDonation = currentMonthDonators.ToList().OrderByDescending(d => d.TotalAmount).FirstOrDefault();
-                mostValuableDonation.Rewards.IsMostValuable = true;
-
-                // Sort by total amount
-                currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();
-                DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
-
+            }
+            catch(HttpRequestException httpRequestException)
+            {
+                await new MessageDialog("OverviewPage_FetchException/Content".GetLocalized()).ShowAsync();
+            }
+            finally
+            {
                 IsLoading = false;
             }
         }
@@ -143,7 +148,7 @@ namespace ml.Doki.ViewModels
             page.ViewModel.Donations = new ObservableCollection<Donation>();
 
             // Get all donations by person
-            var donations = (await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync())
+            var donations = (await Singleton<DonationRemoteService>.Instance.GetAllDonationsAsync())
                 .Where(d => d.FullName == SelectedDonator.FullName);
             donations.ToList().ForEach(d => page.ViewModel.Donations.Add(d));
 
@@ -159,7 +164,7 @@ namespace ml.Doki.ViewModels
             {
                 Content = page,
 
-                PrimaryButtonText = Resource.GetString("OverviewPage_SelectDonatorDialog/PrimaryButtonText"),
+                PrimaryButtonText = "OverviewPage_SelectDonatorDialog/PrimaryButtonText".GetLocalized(),
                 PrimaryButtonCommand = new RelayCommand(() => SelectedDonator = null),
                 DefaultButton = ContentDialogButton.Primary
             };
