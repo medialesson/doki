@@ -223,6 +223,8 @@ namespace ml.Doki.ViewModels
 
             if(contact != null)
                 AssignViewByContact(contact);
+
+            Analytics.TrackEvent("Donate.ChooseContact");
         }
 
         public async void OpenConfigurations()
@@ -243,6 +245,8 @@ namespace ml.Doki.ViewModels
                 };
 
                 await dialog.ShowAsync();
+
+                Analytics.TrackEvent("Donate.OpenConfiguration");
             }
         }
 
@@ -270,6 +274,8 @@ namespace ml.Doki.ViewModels
             var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault().ToList();
             var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), CultureInfo.CurrentUICulture));
             CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
+
+            Analytics.TrackEvent("Donate.AssignAverageAmount");
         }
 
         public void FetchCurrencyPlaceholder()

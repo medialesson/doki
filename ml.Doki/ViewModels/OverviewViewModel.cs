@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Models.Grouping;
@@ -170,6 +171,8 @@ namespace ml.Doki.ViewModels
             };
 
             await dialog.ShowAsync();
+
+            Analytics.TrackEvent("Overview.SelectDonator");
         }
     }
 }

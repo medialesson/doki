@@ -45,9 +45,10 @@ namespace ml.Doki
 
             // Init app center
             var appCenterId = Singleton<Settings>.Instance.AppCenterId;
-            if (string.IsNullOrEmpty(appCenterId))
+            if (!string.IsNullOrEmpty(appCenterId))
             {
                 AppCenter.Start(appCenterId, typeof(Analytics), typeof(Crashes));
+                AppCenter.LogLevel = LogLevel.Verbose;
             }
         }
 

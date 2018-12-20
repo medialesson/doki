@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using Newtonsoft.Json;
@@ -25,6 +26,8 @@ namespace ml.Doki.Services
 
                 var response = await client.SendAsync(request);
                 response.EnsureSuccessStatusCode();
+
+                Analytics.TrackEvent("DonationRemoteService.CommitDonation");
             }
         }
 
@@ -38,6 +41,8 @@ namespace ml.Doki.Services
             {
                 var response = await client.GetAsync(Singleton<Settings>.Instance.RemoteGetEndpoint);
                 response.EnsureSuccessStatusCode();
+
+                Analytics.TrackEvent("DonationRemoteService.GetDonations");
 
                 var responseString = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<Donation>>(responseString);
