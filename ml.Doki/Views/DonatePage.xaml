@@ -55,11 +55,15 @@
                                 Margin="{StaticResource MediumTopMargin}"
                                 HorizontalAlignment="Stretch"
                                 x:Uid="DonatePage_DonationName">
+
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="TextChanged">
                             <core:InvokeCommandAction Command="{Binding PopulateAutoSuggestNamesCommand}"/>
                         </core:EventTriggerBehavior>
-                        <core:EventTriggerBehavior EventName="Enter">
+                        <behavior:KeyBehavior Key="Enter">
+                            <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
+                        </behavior:KeyBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
                             <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
                         </core:EventTriggerBehavior>
                         <core:EventTriggerBehavior EventName="SuggestionChosen">
@@ -68,29 +72,30 @@
                     </i:Interaction.Behaviors>
                 </AutoSuggestBox>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0.2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0"
-                             Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
-                             PlaceholderText="{Binding CurrencyPlaceholder}"
-                             Margin="{StaticResource SmallTopMargin}"
-                             HorizontalAlignment="Stretch"
-                             InputScope="CurrencyAmount"
-                             x:Uid="DonatePage_DonationAmount"/>
-                    <Button Grid.Column="1"
-                            Command="{Binding FetchAverageDonationAmountCommand}"
-                            VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
-                            Content="{Binding CurrencySymbol}"
-                            x:Uid="DonatePage_AverageAmountButton"/>
+                <AutoSuggestBox x:Uid="DonatePage_DonationAmount"
+                                    Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
+                                    PlaceholderText="{Binding CurrencyPlaceholder}"
+                                    Margin="{StaticResource SmallTopMargin}"
+                                    HorizontalAlignment="Stretch" >
+
                     <i:Interaction.Behaviors>
                         <behavior:KeyBehavior Key="Enter">
                             <core:InvokeCommandAction Command="{Binding FocusNextElementCommand}"/>
                         </behavior:KeyBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
+                            <core:InvokeCommandAction Command="{Binding FetchAverageDonationAmountCommand}"/>
+                        </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
-                </Grid>
+
+                    <AutoSuggestBox.QueryIcon>
+                        <FontIcon x:Uid="DonatePage_AverageAmountButton"
+                                  FontSize="12" FontWeight="Bold"
+                                  FontFamily="Segoe UI"
+                                  Glyph="&#x20ac;">
+                        </FontIcon>
+                    </AutoSuggestBox.QueryIcon>
+
+                </AutoSuggestBox>
             </StackPanel>
         </Grid>
 

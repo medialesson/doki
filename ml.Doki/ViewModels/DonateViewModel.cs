@@ -129,7 +129,7 @@ namespace ml.Doki.ViewModels
             await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
             {
                 FullName = CurrentDonationName,
-                Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, CultureInfo.CurrentCulture),
+                Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
                 DonatedAt = DateTime.Now
             });
 

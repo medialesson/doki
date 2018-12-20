@@ -15,7 +15,7 @@ namespace ml.Doki.Helpers.Converters
             var cultureInfo = Singleton<Settings>.Instance.ApplicationCultureInfo;
             decimal input;
 
-            if (!decimal.TryParse(value.ToString(), NumberStyles.Currency, cultureInfo, out input))
+            if (!decimal.TryParse(value.ToString(), NumberStyles.Currency, CultureInfo.CurrentUICulture, out input))
             {
                 return value;
             }

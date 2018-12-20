@@ -56,8 +56,8 @@ namespace ml.Doki.Helpers
         {
             return await Task.FromResult(new List<string>()
             {
-                "en-us",
-                "de-de"
+                "en-US",
+                "de-DE"
             });
         }
 
