@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Humanizer.Localisation;
 using Microsoft.AppCenter.Analytics;
@@ -149,6 +150,9 @@ namespace ml.Doki.ViewModels
             };
 
             await confirmationDialog.ShowAsync();
+
+            // Navigate to overview page
+            Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
         }
 
         private bool IsInputValid()

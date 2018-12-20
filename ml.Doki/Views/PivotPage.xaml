@@ -12,7 +12,8 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Pivot x:Uid="PivotPage" x:Name="pivot">
+        <Pivot x:Uid="PivotPage" x:Name="pivot"
+               SelectedIndex="{Binding SelectedPivotIndex}">
             <i:Interaction.Behaviors>
                 <behaviors:PivotBehavior />
             </i:Interaction.Behaviors>
