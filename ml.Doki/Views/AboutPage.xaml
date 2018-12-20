@@ -5,6 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:ml.Doki.Helpers.Converters"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
@@ -18,19 +20,37 @@
                 <StackPanel Margin="{StaticResource XXSmallTopMargin}"
                             Visibility="{x:Bind ViewModel.AboutText, Converter={StaticResource stringToVisibilityConverter}, Mode=OneWay}">
                     <controls:MarkdownTextBlock Text="{Binding AboutText, Mode=OneWay}"
-                                                Margin="{StaticResource MediumBottomMargin}"/>
+                                                Margin="{StaticResource MediumBottomMargin}">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="LinkClicked">
+                                <core:InvokeCommandAction Command="{Binding MarkdownLinkClickedCommand}"></core:InvokeCommandAction>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </controls:MarkdownTextBlock>
                 </StackPanel>
 
                 <StackPanel>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Title"/>
                     <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
-                                                x:Uid="AboutPage_DevsDescription"/>
+                                                x:Uid="AboutPage_DevsDescription">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="LinkClicked">
+                                <core:InvokeCommandAction Command="{Binding MarkdownLinkClickedCommand}"></core:InvokeCommandAction>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </controls:MarkdownTextBlock>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Licenses"/>
                     <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
-                                                x:Uid="AboutPage_LicensesDescription"/>
+                                                x:Uid="AboutPage_LicensesDescription">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="LinkClicked">
+                                <core:InvokeCommandAction Command="{Binding MarkdownLinkClickedCommand}"></core:InvokeCommandAction>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </controls:MarkdownTextBlock>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

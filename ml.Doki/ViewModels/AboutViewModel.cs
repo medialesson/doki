@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using ml.Doki.Helpers;
+using Windows.System;
 
 namespace ml.Doki.ViewModels
 {
@@ -15,9 +17,13 @@ namespace ml.Doki.ViewModels
 
         public ICommand LoadCommand { get; }
 
+        public ICommand MarkdownLinkClickedCommand { get; }
+
         public AboutViewModel()
         {
             LoadCommand = new RelayCommand(Load);
+            MarkdownLinkClickedCommand = new RelayCommand<LinkClickedEventArgs>(MarkdownLinkClicked);
+
             LoadCommand.Execute(null);
         }
 
@@ -25,6 +31,11 @@ namespace ml.Doki.ViewModels
         {
             await Singleton<Settings>.Instance.InitializeAsync();
             this.AboutText = Singleton<Settings>.Instance.AboutText;
+        }
+
+        private async void MarkdownLinkClicked(LinkClickedEventArgs args)
+        {
+            await Launcher.LaunchUriAsync(new Uri(args.Link));
         }
     }
 }
