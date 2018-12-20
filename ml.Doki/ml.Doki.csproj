@@ -124,6 +124,7 @@
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\Converters\DateToRelativeTimeConverter.cs" />
     <Compile Include="Helpers\Converters\DecimalToStringCurrencyConverter.cs" />
+    <Compile Include="Helpers\Converters\InvertBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\NumberToMonthNameConverter.cs" />
     <Compile Include="Helpers\DeviceSecurity.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />

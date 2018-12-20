@@ -13,6 +13,7 @@
 
     <Page.Resources>
         <converters:NumberToMonthNameConverter x:Key="numberToMonthNameConverter"/>
+        <converters:InvertBooleanConverter x:Key="invertBooleanConverter"/>
         <CollectionViewSource x:Name="DonatorsPerMonth" x:Key="DonatorsPerMonth"
                               Source="{Binding DonatorsPerMonth, Mode=OneWay}"
                               IsSourceGrouped="True"/>
@@ -79,12 +80,21 @@
                     </ListView>
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
+
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <ProgressRing Width="80" Height="80"
+                                  HorizontalAlignment="Center"
+                                  IsActive="{Binding IsLoading, Mode=OneWay}"/>
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
             <CommandBar Style="{StaticResource CommandBarTransparent}">
                 <AppBarButton Icon="Refresh"
                               Command="{Binding LoadCommand}"
+                              IsEnabled="{Binding IsLoading, Converter={StaticResource invertBooleanConverter}, Mode=OneWay}"
                               x:Uid="OverviewPage_RefreshButton"/>
             </CommandBar>
         </Grid>

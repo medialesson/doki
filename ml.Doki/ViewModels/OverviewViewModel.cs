@@ -36,6 +36,14 @@ namespace ml.Doki.ViewModels
             get => _donatorsPerMonth;
             set => Set(ref _donatorsPerMonth, value);
         }
+
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => Set(ref _isLoading, value);
+        }
         #endregion
 
         #region Commands
@@ -62,6 +70,8 @@ namespace ml.Doki.ViewModels
 
         private async void Load()
         {
+            IsLoading = true;
+
             // Clear all previous donations
             DonatorsPerMonth.Clear();
 
@@ -115,8 +125,9 @@ namespace ml.Doki.ViewModels
 
                 // Sort by total amount
                 currentMonthDonators = currentMonthDonators.OrderByDescending(x => x.TotalAmount).ToList();
-
                 DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
+
+                IsLoading = false;
             }
         }
 
