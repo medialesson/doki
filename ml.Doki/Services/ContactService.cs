@@ -29,7 +29,9 @@ namespace ml.Doki.Services
             {
                 // Fetch all the details
                 ContactStore contactStore = await PromptForPermissionsAsync();
-                contact = await contactStore.GetContactAsync(contact.Id);
+
+                if(contactStore != null)
+                    contact = await contactStore.GetContactAsync(contact.Id);
             }
 
             return contact;
@@ -38,15 +40,30 @@ namespace ml.Doki.Services
         public async Task<Contact> GetContactByDisplayNameAsync(string name)
         {
             var contactStore = await ContactManager.RequestStoreAsync();
-            var contacts = await contactStore.FindContactsAsync();
+            if(contactStore != null)
+            {
+                var contacts = await contactStore.FindContactsAsync();
 
-            var selectedContact = contacts.FirstOrDefault(c => c.DisplayName.ToLower() == name.ToLower());
-            return selectedContact;
+                var selectedContact = contacts.FirstOrDefault(c => c.DisplayName.ToLower() == name.ToLower());
+                return selectedContact;
+            }
+            else
+            {
+                return new Contact
+                {
+                    DisplayNameOverride = name
+                };
+            }
         }
 
         public async Task<IList<Contact>> SearchContactsByNameAsync(string query, bool distinct = false)
         {
             var contactStore = await ContactManager.RequestStoreAsync();
+            if(contactStore == null)
+            {
+                return new List<Contact>();
+            }
+
             var contacts = await contactStore.FindContactsAsync();
 
             var results = contacts.Where(c =>

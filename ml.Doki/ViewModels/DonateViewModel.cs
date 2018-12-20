@@ -164,7 +164,7 @@ namespace ml.Doki.ViewModels
                 NumberStyles.Currency, CultureInfo.CurrentCulture,
                 out amount);
 
-            return isNameValid && isAmountValid;
+            return isNameValid && isAmountValid && amount > 0.01m;
         }
 
         private async void AssignAvatarByName(string name)

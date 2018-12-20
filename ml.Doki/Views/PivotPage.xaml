@@ -13,7 +13,7 @@
 
     <Grid>
         <Pivot x:Uid="PivotPage" x:Name="pivot"
-               SelectedIndex="{Binding SelectedPivotIndex}">
+               SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
             <i:Interaction.Behaviors>
                 <behaviors:PivotBehavior />
             </i:Interaction.Behaviors>
