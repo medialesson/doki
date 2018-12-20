@@ -122,14 +122,16 @@ namespace ml.Doki.ViewModels
 
         public async void SelectDonator(ItemClickEventArgs args)
         {
+            // Assign donator
             SelectedDonator = args.ClickedItem as Donator;
             if (SelectedDonator == null)
                 return;
 
-
+            // Initialize details page
             var page = new DonatorDetailPage();
             page.ViewModel.Donations = new ObservableCollection<Donation>();
 
+            // Get all donations by person
             var donations = (await Singleton<DonationFakeService>.Instance.GetAllDonationsAsync())
                 .Where(d => d.FullName == SelectedDonator.FullName);
             donations.ToList().ForEach(d => page.ViewModel.Donations.Add(d));
@@ -147,6 +149,7 @@ namespace ml.Doki.ViewModels
                 Content = page,
 
                 PrimaryButtonText = Resource.GetString("OverviewPage_SelectDonatorDialog/PrimaryButtonText"),
+                PrimaryButtonCommand = new RelayCommand(() => SelectedDonator = null),
                 DefaultButton = ContentDialogButton.Primary
             };
 
