@@ -55,12 +55,14 @@ namespace ml.Doki.ViewModels
             }
         }
 
+
         private ObservableCollection<string> _donationNameAutoSuggestList;
         public ObservableCollection<string> DonationNameAutoSuggestList
         {
             get => _donationNameAutoSuggestList;
             set => Set(ref _donationNameAutoSuggestList, value);
         }
+
 
         private string _currencyPlaceholder;
         public string CurrencyPlaceholder
@@ -69,11 +71,20 @@ namespace ml.Doki.ViewModels
             set => Set(ref _currencyPlaceholder, value);
         }
 
+
         private string _currencySymbol;
         public string CurrencySymbol
         {
             get => _currencySymbol;
             set => Set(ref _currencySymbol, value);
+        }
+
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => Set(ref _isLoading, value);
         }
         #endregion
 
@@ -129,6 +140,8 @@ namespace ml.Doki.ViewModels
 
             try
             {
+                IsLoading = true;
+
                 // Donate
                 await Singleton<DonationRemoteService>.Instance.DonateAsync(new Donation
                 {
@@ -142,6 +155,7 @@ namespace ml.Doki.ViewModels
 
                 // Clear input
                 ClearInput();
+                IsLoading = false;
 
                 // Show confirmation
                 var confirmationDialog = new ContentDialog
@@ -161,6 +175,10 @@ namespace ml.Doki.ViewModels
             {
                 await new MessageDialog("There was an error while committing your donation. " +
                     "Please try again or contact your system administrator for further assistance").ShowAsync();
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
