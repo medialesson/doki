@@ -49,7 +49,7 @@
 
                     <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding CurrentDonatorImageSource, Mode=OneWay}"/>
+                            <ImageBrush ImageSource="{Binding CurrentDonatorImageSource, Mode=OneWay}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </Grid>

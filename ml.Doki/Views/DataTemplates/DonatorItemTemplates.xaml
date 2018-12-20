@@ -27,7 +27,7 @@
 
                                 <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding AvatarSource}"/>
+                                        <ImageBrush ImageSource="{Binding AvatarSource}" Stretch="UniformToFill"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </Grid>

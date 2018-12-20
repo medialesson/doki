@@ -106,7 +106,6 @@ namespace ml.Doki.ViewModels
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
             await Singleton<Settings>.Instance.SetApiIsEnabledAsync(this.IsApiEnabled);
             await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
-            await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
 
             // Reload all singleton view models
             // TODO: Is this legit?
@@ -116,7 +115,6 @@ namespace ml.Doki.ViewModels
             Singleton<AboutViewModel>.Instance.LoadCommand.Execute(null);
 
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
-            await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
 
             await new MessageDialog("ConfigurationPage_SaveDialog/Description".GetLocalized()).ShowAsync();
         }
