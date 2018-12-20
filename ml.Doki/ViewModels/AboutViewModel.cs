@@ -15,6 +15,12 @@ namespace ml.Doki.ViewModels
             get { return _aboutText; }
             set { Set(ref _aboutText, value); }
         }
+
+        public string AppDisplayName { get; set; }
+
+        public string AppVersion { get; set; }
+
+        public string AppDescription { get; set; }
         #endregion
 
         #region Commands
@@ -25,6 +31,10 @@ namespace ml.Doki.ViewModels
 
         public AboutViewModel()
         {
+            AppDisplayName = "AppDisplayName".GetLocalized();
+            AppVersion = Settings.GetAppVersion();
+            AppDescription = "AppDescription".GetLocalized();
+
             LoadCommand = new RelayCommand(Load);
             MarkdownLinkClickedCommand = new RelayCommand<LinkClickedEventArgs>(MarkdownLinkClicked);
 

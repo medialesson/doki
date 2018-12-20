@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
@@ -67,6 +68,16 @@ namespace ml.Doki.Helpers
             await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(RemoteGetEndpoint), remoteGetEndpoint);
             await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(RemotePostEndpoint), remotePostEndpoint);
             await InitializeAsync();
+        }
+
+        public static string GetAppVersion()
+        {
+
+            Package package = Package.Current;
+            PackageId packageId = package.Id;
+            PackageVersion version = packageId.Version;
+
+            return string.Format("AppVersionFormat".GetLocalized(), version.Major, version.Minor, version.Build, version.Revision);
         }
     }
 }

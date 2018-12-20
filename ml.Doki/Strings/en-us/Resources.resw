@@ -151,9 +151,6 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
     <value>Beer icon made by [srip](https://www.flaticon.com/authors/srip) from [flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/).</value>
   </data>
-  <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
   </data>
@@ -240,5 +237,8 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
     <value>POST endpoint</value>
+  </data>
+  <data name="AppVersionFormat" xml:space="preserve">
+    <value>{0}.{1} Build {2}</value>
   </data>
 </root>

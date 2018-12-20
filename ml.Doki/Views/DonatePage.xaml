@@ -9,7 +9,7 @@
     xmlns:behavior="using:ml.Doki.Behaviors"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>

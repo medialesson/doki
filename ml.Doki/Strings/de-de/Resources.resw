@@ -122,7 +122,7 @@
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Doki ist eine Companion-App für die vereinsamte Kaffeekasse im Büro und Teams die schnell und einfach Spenden überblicken wollen.</value>
+    <value>ist eine Companion-App für die vereinsamte Kaffeekasse im Büro und Teams die schnell und einfach Spenden überblicken wollen.</value>
     <comment>Application description</comment>
   </data>
   <data name="PivotPage_Donate.Header" xml:space="preserve">
@@ -150,9 +150,6 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
     <value>Bier Icon entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/) ist unter der [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/) lizensiert.</value>
-  </data>
-  <data name="AboutPage_Title.Text" xml:space="preserve">
-    <value>Über</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -240,5 +237,8 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
     <value>POST Endpunkt</value>
+  </data>
+  <data name="AppVersionFormat" xml:space="preserve">
+    <value>{0}.{1} Build {2}</value>
   </data>
 </root>
