@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Humanizer.Localisation;
@@ -126,33 +127,41 @@ namespace ml.Doki.ViewModels
                 return;
             }
 
-            // Donate
-            await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
+            try
             {
-                FullName = CurrentDonationName,
-                Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
-                DonatedAt = DateTime.Now
-            });
+                // Donate
+                await Singleton<DonationRemoteService>.Instance.DonateAsync(new Donation
+                {
+                    FullName = CurrentDonationName,
+                    Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
+                    DonatedAt = DateTime.Now
+                });
 
-            // Refresh overview view model in background
-            Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
+                // Refresh overview view model in background
+                Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
 
-            // Clear input
-            ClearInput();
+                // Clear input
+                ClearInput();
 
-            // Show confirmation
-            var confirmationDialog = new ContentDialog
+                // Show confirmation
+                var confirmationDialog = new ContentDialog
+                {
+                    Content = new DonationConfirmationPage(),
+
+                    PrimaryButtonText = Resource.GetString("DonatePage_DonateConfirmationDialog/PrimaryButtonText"),
+                    DefaultButton = ContentDialogButton.Primary
+                };
+
+                await confirmationDialog.ShowAsync();
+
+                // Navigate to overview page
+                Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
+            }
+            catch(HttpRequestException httpRequestException)
             {
-                Content = new DonationConfirmationPage(),
-
-                PrimaryButtonText = Resource.GetString("DonatePage_DonateConfirmationDialog/PrimaryButtonText"),
-                DefaultButton = ContentDialogButton.Primary
-            };
-
-            await confirmationDialog.ShowAsync();
-
-            // Navigate to overview page
-            Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
+                await new MessageDialog("There was an error while committing your donation. " +
+                    "Please try again or contact your system administrator for further assistance").ShowAsync();
+            }
         }
 
         private bool IsInputValid()
