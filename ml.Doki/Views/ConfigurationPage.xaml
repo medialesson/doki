@@ -33,8 +33,8 @@
                                      Header="App Center ID"/>
 
                             <CheckBox Margin="{StaticResource SmallTopMargin}"
-                                      Content="Enable API"
-                                      IsChecked="{Binding IsApiEnabled, Mode=TwoWay}"/>
+                                      IsChecked="{Binding IsApiEnabled, Mode=TwoWay}"
+                                      x:Uid="ConfigurationPage_ApiCheckbox"/>
                             
                             <StackPanel Visibility="{x:Bind ViewModel.IsApiEnabled, Mode=OneWay}">
                                 <StackPanel.Transitions>
@@ -43,14 +43,13 @@
                                     </TransitionCollection>
                                 </StackPanel.Transitions>
                                 <TextBox Text="{Binding RemotePostEndpoint, Mode=TwoWay}"
-                                     Header="Store Remote Endpoint"
-                                     InputScope="Url"
-                                     Margin="{StaticResource SmallTopMargin}"/>
-
+                                         InputScope="Url"
+                                         Margin="{StaticResource SmallTopMargin}"
+                                         x:Uid="ConfigurationPage_ApiGetEndpoint"/>
                                 <TextBox Text="{Binding RemoteGetEndpoint, Mode=TwoWay}"
-                                     Header="List Remote Endpoint"
-                                     InputScope="Url"
-                                     Margin="{StaticResource SmallTopMargin}"/>
+                                         InputScope="Url"
+                                         Margin="{StaticResource SmallTopMargin}"
+                                         x:Uid="ConfigurationPage_ApiPostEndpoint"/>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>

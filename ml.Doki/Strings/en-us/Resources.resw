@@ -149,7 +149,26 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
     <value>Licenses</value>
   </data>
   <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
-    <value>Beer icon made by [srip](https://www.flaticon.com/authors/srip) from [flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/).</value>
+    <value>Third-party software acknowledgements
+
+### Humanizer
+https://github.com/Humanizr/Humanizer  
+Copyright &amp;copy; .NET Foundation and Contributors  
+Licensed under [MIT License](https://github.com/Humanizr/Humanizer/blob/master/LICENSE)
+
+### Inflector
+https://github.com/srkirkland/Inflector  
+Copyright &amp;copy; 2013 Scott Kirkland  
+Licensed under [MIT License](https://github.com/srkirkland/Inflector/blob/master/LICENSE.txt)
+
+### ByteSize
+https://github.com/omar/ByteSize  
+Copyright &amp;copy; 2013-2014 Omar Khudeira  
+Lizensiert under [MIT License](https://github.com/omar/ByteSize/blob/master/LICENSE)
+
+### Beer icon
+Entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/)  
+Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -230,7 +249,7 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
     <value>An error occured while committing your donation. Please try again or reach out to your system administrator for further assistance.</value>
   </data>
   <data name="OverviewPage_FetchException.Content" xml:space="preserve">
-    <value>We were not able to fetch all donations. Please contact the system administrator for assistance.</value>
+    <value>Unable to fetch all donations. Please contact the administrator for assistance.</value>
   </data>
   <data name="ConfigurationPage_ContentAboutDescription.PlaceholderText" xml:space="preserve">
     <value>## Where the money will be going
@@ -239,12 +258,15 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
 - This text field can be styled with Markdown</value>
   </data>
   <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
-    <value>GET endpoint</value>
+    <value>List Remote Endpoint</value>
   </data>
   <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
-    <value>POST endpoint</value>
+    <value>Store Remote Endpoint</value>
   </data>
   <data name="AppVersionFormat" xml:space="preserve">
     <value>{0}.{1} Build {2}</value>
+  </data>
+  <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
+    <value>Enable API</value>
   </data>
 </root>

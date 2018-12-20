@@ -122,7 +122,7 @@
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>ist eine Companion-App für die vereinsamte Kaffeekasse im Büro und Teams die schnell und einfach Spenden überblicken wollen.</value>
+    <value>Doki (engl. "Donation Kiosk") ist eine Companion-App für die vereinsamte Kaffeekasse im Büro und Teams die schnell und einfach Spenden überblicken wollen.</value>
     <comment>Application description</comment>
   </data>
   <data name="PivotPage_Donate.Header" xml:space="preserve">
@@ -149,7 +149,26 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
     <value>Lizenzen</value>
   </data>
   <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
-    <value>Bier Icon entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/) ist unter der [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/) lizensiert.</value>
+    <value>Liste mit Angaben zur drittanbieter Software, die in diesem Produkt verwendet wurde.
+
+### Humanizer
+https://github.com/Humanizr/Humanizer  
+Copyright &amp;copy; .NET Foundation and Contributors  
+Lizensiert unter der [MIT License](https://github.com/Humanizr/Humanizer/blob/master/LICENSE)
+
+### Inflector
+https://github.com/srkirkland/Inflector  
+Copyright &amp;copy; 2013 Scott Kirkland  
+Lizensiert unter der [MIT License](https://github.com/srkirkland/Inflector/blob/master/LICENSE.txt)
+
+### ByteSize
+https://github.com/omar/ByteSize  
+Copyright &amp;copy; 2013-2014 Omar Khudeira  
+Lizensiert unter der [MIT License](https://github.com/omar/ByteSize/blob/master/LICENSE)
+
+### Bier Icon
+Entworfen von [srip](https://www.flaticon.com/authors/srip), gefunden auf [flaticon.com](https://www.flaticon.com/)  
+Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</value>
   </data>
   <data name="ConfigurationPage_Api.Header" xml:space="preserve">
     <value>API</value>
@@ -233,10 +252,10 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
 - Das Textfeld kann in Markdown geschrieben werden</value>
   </data>
   <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
-    <value>GET Endpunkt</value>
+    <value>Bezugs Endpunkt</value>
   </data>
   <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
-    <value>POST Endpunkt</value>
+    <value>Speicher Endpunkt</value>
   </data>
   <data name="AppVersionFormat" xml:space="preserve">
     <value>{0}.{1} Build {2}</value>
@@ -246,5 +265,8 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="OverviewPage_FetchException.Content" xml:space="preserve">
     <value>Wir konnten keine Spenden laden. Bitte versuche es erneut oder wende dich an den Administator.</value>
+  </data>
+  <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
+    <value>API verwenden</value>
   </data>
 </root>
