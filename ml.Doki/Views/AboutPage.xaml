@@ -5,39 +5,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:ml.Doki.Helpers.Converters"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter"/>
+    </Page.Resources>
     <Grid x:Name="ContentArea">
         <ScrollViewer>
             <StackPanel>
                 <!-- TODO: Move to settings -->
-                <StackPanel Margin="{StaticResource XXSmallTopMargin}">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_DonationTargetTitle"/>
-                    <!--<TextBlock Text="{Binding AboutText, Mode=OneWay}"
-                               Style="{ThemeResource BodyTextBlockStyle}"
-                               Margin="{StaticResource XXSmallTopMargin}"/>-->
-                    <controls:MarkdownTextBlock Text="{Binding AboutText, Mode=OneWay}"/>
+                <StackPanel Margin="{StaticResource XXSmallTopMargin}"
+                            Visibility="{x:Bind ViewModel.AboutText, Converter={StaticResource stringToVisibilityConverter}, Mode=OneWay}">
+                    <controls:MarkdownTextBlock Text="{Binding AboutText, Mode=OneWay}"
+                                                Margin="{StaticResource MediumBottomMargin}"/>
                 </StackPanel>
 
-                <StackPanel Margin="{StaticResource MediumTopMargin}">
+                <StackPanel>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Title"/>
-                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                               Margin="{StaticResource XXSmallTopMargin}">
-                        Developed by Gino Messmer &amp; Samuel Oechsler.
-                        <LineBreak/>Fork us on <Hyperlink NavigateUri="https://github.com/medialesson/doki-uwp">GitHub</Hyperlink>.
-                    </TextBlock>
+                    <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
+                                                x:Uid="AboutPage_DevsDescription"/>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Licenses"/>
-                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                               Margin="{StaticResource XXSmallTopMargin}">
-                        <Span>
-                            Beer icon made by <Hyperlink NavigateUri="https://www.flaticon.com/authors/srip">srip</Hyperlink> 
-                            from <Hyperlink NavigateUri="https://www.flaticon.com/">flaticon.com</Hyperlink> 
-                            is licensed by CC 3.0 BY.
-                        </Span>
-                    </TextBlock>
+                    <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
+                                                x:Uid="AboutPage_LicensesDescription"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

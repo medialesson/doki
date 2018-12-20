@@ -144,13 +144,10 @@
   <data name="AboutPage_DevsDescription.Text" xml:space="preserve">
     <value>TODO: Find out how to embed stuff here first</value>
   </data>
-  <data name="AboutPage_DonationTargetTitle.Text" xml:space="preserve">
-    <value>Where goes my money?</value>
-  </data>
   <data name="AboutPage_Licenses.Text" xml:space="preserve">
     <value>Licenses</value>
   </data>
-  <data name="AboutPage_LicensesInfo.Text" xml:space="preserve">
+  <data name="AboutPage_LicensesDescription.Text" xml:space="preserve">
     <value>TODO: Find out how to embed stuff here first</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
