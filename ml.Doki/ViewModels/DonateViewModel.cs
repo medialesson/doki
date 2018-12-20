@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Humanizer.Localisation;
@@ -50,12 +51,14 @@ namespace ml.Doki.ViewModels
             }
         }
 
+
         private ObservableCollection<string> _donationNameAutoSuggestList;
         public ObservableCollection<string> DonationNameAutoSuggestList
         {
             get => _donationNameAutoSuggestList;
             set => Set(ref _donationNameAutoSuggestList, value);
         }
+
 
         private string _currencyPlaceholder;
         public string CurrencyPlaceholder
@@ -64,11 +67,20 @@ namespace ml.Doki.ViewModels
             set => Set(ref _currencyPlaceholder, value);
         }
 
+
         private string _currencySymbol;
         public string CurrencySymbol
         {
             get => _currencySymbol;
             set => Set(ref _currencySymbol, value);
+        }
+
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => Set(ref _isLoading, value);
         }
         #endregion
 
@@ -119,33 +131,47 @@ namespace ml.Doki.ViewModels
                 return;
             }
 
-            // Donate
-            await Singleton<DonationFakeService>.Instance.DonateAsync(new Donation
+            try
             {
-                FullName = CurrentDonationName,
-                Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
-                DonatedAt = DateTime.Now
-            });
+                IsLoading = true;
 
-            // Refresh overview view model in background
-            Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
+                // Donate
+                await Singleton<DonationRemoteService>.Instance.DonateAsync(new Donation
+                {
+                    FullName = CurrentDonationName,
+                    Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
+                    DonatedAt = DateTime.Now
+                });
 
-            // Clear input
-            ClearInput();
+                // Refresh overview view model in background
+                Singleton<OverviewViewModel>.Instance.LoadCommand.Execute(null);
 
-            // Show confirmation
-            var confirmationDialog = new ContentDialog
-            {
-                Content = new DonationConfirmationPage(),
+                // Clear input
+                ClearInput();
+                IsLoading = false;
+
+                // Show confirmation
+                var confirmationDialog = new ContentDialog
+                {
+                    Content = new DonationConfirmationPage(),
 
                 PrimaryButtonText = "DonatePage_DonateConfirmationDialog/PrimaryButtonText".GetLocalized(),
                 DefaultButton = ContentDialogButton.Primary
             };
 
-            await confirmationDialog.ShowAsync();
+                await confirmationDialog.ShowAsync();
 
-            // Navigate to overview page
-            Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
+                // Navigate to overview page
+                Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
+            }
+            catch(HttpRequestException httpRequestException)
+            {
+                await new MessageDialog("DonatePage_CommitException/Content".GetLocalized()).ShowAsync();
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private bool IsInputValid()
@@ -190,6 +216,9 @@ namespace ml.Doki.ViewModels
 
         private async void ChooseFromContacts()
         {
+            if (IsLoading)
+                return;
+
             var contact = await Singleton<ContactService>.Instance.PromptUserForContactAsync();
 
             if(contact != null)

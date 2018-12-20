@@ -7,8 +7,12 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:behavior="using:ml.Doki.Behaviors"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <converters:BoolNegationConverter x:Key="boolNegationConverter"/>
+    </Page.Resources>
     <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -52,6 +56,7 @@
 
                 <AutoSuggestBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
                                 ItemsSource="{Binding DonationNameAutoSuggestList, Mode=OneWay}"
+                                IsEnabled="{Binding IsLoading, Converter={StaticResource boolNegationConverter}, Mode=OneWay}"
                                 Margin="{StaticResource MediumTopMargin}"
                                 HorizontalAlignment="Stretch"
                                 x:Uid="DonatePage_DonationName">
@@ -81,6 +86,7 @@
                              Text="{Binding CurrentDonationAmount, Mode=TwoWay}"
                              PlaceholderText="{Binding CurrencyPlaceholder}"
                              Margin="{StaticResource SmallTopMargin}"
+                             IsEnabled="{Binding IsLoading, Converter={StaticResource boolNegationConverter}, Mode=OneWay}"
                              HorizontalAlignment="Stretch"
                              InputScope="CurrencyAmount"
                              x:Uid="DonatePage_DonationAmount">
@@ -102,6 +108,7 @@
         <Grid Grid.Row="1" Margin="{StaticResource SmallTopBottomMargin}">
             <Button Command="{Binding DonateCommand}"
                     Style="{ThemeResource AccentButtonStyle}"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource boolNegationConverter}, Mode=OneWay}"
                     Height="60" HorizontalAlignment="Stretch">
                 <Button.ContextFlyout>
                     <MenuFlyout>
@@ -114,6 +121,13 @@
                 </Button.ContextFlyout>
                 <SymbolIcon Symbol="Forward"/>
             </Button>
+        </Grid>
+
+        <Grid Grid.RowSpan="2">
+            <ProgressRing IsActive="{Binding IsLoading, Mode=OneWay}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Height="100" Width="100"/>
         </Grid>
     </Grid>
 </Page>

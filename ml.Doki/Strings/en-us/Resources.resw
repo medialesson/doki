@@ -226,6 +226,12 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
     <value>Trending</value>
   </data>
+  <data name="DonatePage_CommitException.Content" xml:space="preserve">
+    <value>An error occured while committing your donation. Please try again or reach out to your system administrator for further assistance.</value>
+  </data>
+  <data name="OverviewPage_FetchException.Content" xml:space="preserve">
+    <value>We were not able to fetch all donations. Please contact the system administrator for assistance.</value>
+  </data>
   <data name="ConfigurationPage_ContentAboutDescription.PlaceholderText" xml:space="preserve">
     <value>## Where the money will be going
 

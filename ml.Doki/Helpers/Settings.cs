@@ -21,6 +21,19 @@ namespace ml.Doki.Helpers
 
         public string AppCenterId { get; private set; }
 
+        private bool _isApiEnabled;
+        public bool IsApiEnabled
+        {
+            get
+            {
+                return _isApiEnabled && !string.IsNullOrEmpty(RemoteGetEndpoint) && !string.IsNullOrEmpty(RemotePostEndpoint);
+            }
+            set
+            {
+                _isApiEnabled = value;
+            }
+        }
+
         public string RemoteGetEndpoint { get; private set; }
 
         public string RemotePostEndpoint { get; private set; }
@@ -31,7 +44,10 @@ namespace ml.Doki.Helpers
             AboutText = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AboutText));
             ApplicationCultureName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(ApplicationCultureName)) ?? "en-US";
 
+
             AppCenterId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(AppCenterId));
+
+            IsApiEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(IsApiEnabled));
             RemoteGetEndpoint = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(RemoteGetEndpoint));
             RemotePostEndpoint = await ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(RemotePostEndpoint));
         }
@@ -51,6 +67,12 @@ namespace ml.Doki.Helpers
         public async Task SetAppCenterIdAsync(string id)
         {
             await ApplicationData.Current.LocalSettings.SaveAsync<string>(nameof(AppCenterId), id);
+            await InitializeAsync();
+        }
+
+        public async Task SetApiIsEnabledAsync(bool isEnabled)
+        {
+            await ApplicationData.Current.LocalSettings.SaveAsync<bool>(nameof(IsApiEnabled), isEnabled);
             await InitializeAsync();
         }
 

@@ -241,4 +241,10 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   <data name="AppVersionFormat" xml:space="preserve">
     <value>{0}.{1} Build {2}</value>
   </data>
+  <data name="DonatePage_CommitException.Content" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim Speichern deiner Spende. Bitte versuche es erneut oder wende dich an den Administrator.</value>
+  </data>
+  <data name="OverviewPage_FetchException.Content" xml:space="preserve">
+    <value>Wir konnten keine Spenden laden. Bitte versuche es erneut oder wende dich an den Administator.</value>
+  </data>
 </root>
