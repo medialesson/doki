@@ -38,7 +38,8 @@
                             
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding Donator.AvatarSource, Mode=OneWay}"/>
+                                    <ImageBrush ImageSource="{Binding Donator.AvatarSource, Mode=OneWay}"
+                                                Stretch="UniformToFill"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>
