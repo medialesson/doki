@@ -242,7 +242,7 @@ namespace ml.Doki.ViewModels
             var cultureInfo = new CultureInfo(locale);
 
             var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault().ToList();
-            var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), cultureInfo));
+            var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), CultureInfo.CurrentUICulture));
             CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
         }
 
