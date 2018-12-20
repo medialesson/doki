@@ -18,11 +18,6 @@
                                      Height="130"
                                      x:Uid="ConfigurationPage_ContentAboutDescription"/>
 
-                            <!--<ComboBox Header="Language Locale"
-                                      ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
-                                      Margin="{StaticResource SmallTopMargin}"
-                                      HorizontalAlignment="Stretch"/>-->
-
                             <ComboBox ItemsSource="{Binding AvailableLocales, Mode=OneWay}"
                                       SelectedItem="{Binding SelectedCurrencyLocale, Mode=TwoWay}"
                                       Margin="{StaticResource SmallTopMargin}"

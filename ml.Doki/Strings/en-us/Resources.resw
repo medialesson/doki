@@ -142,8 +142,8 @@
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
   <data name="AboutPage_DevsDescription.Text" xml:space="preserve">
-    <value>Developed by Gino Messmer &amp; Samuel Oechsler.
-Fork us on [GitHub](https://github.com/medialesson/doki-uwp)</value>
+    <value>Developed by Gino Messmer &amp; Samuel Oechsler.  
+Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
   </data>
   <data name="AboutPage_Licenses.Text" xml:space="preserve">
     <value>Licenses</value>
@@ -164,7 +164,7 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp)</value>
     <value>Content</value>
   </data>
   <data name="ConfigurationPage_ContentAboutDescription.Header" xml:space="preserve">
-    <value>About text</value>
+    <value>About content</value>
   </data>
   <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
     <value>Currency local</value>
@@ -228,5 +228,11 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp)</value>
   </data>
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
     <value>Trending</value>
+  </data>
+  <data name="ConfigurationPage_ContentAboutDescription.PlaceholderText" xml:space="preserve">
+    <value>## Where the money will be going
+
+- Enter a set of reasons that describe your cause
+- This text field can be styled with Markdown</value>
   </data>
 </root>
