@@ -268,6 +268,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="ml.Doki_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\de-de\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
