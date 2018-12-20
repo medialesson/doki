@@ -231,4 +231,10 @@
   <data name="DonatorItemTemplates_RewardTrending.ToolTipService.ToolTip" xml:space="preserve">
     <value>Am häufigsten gespendet</value>
   </data>
+  <data name="DonatePage_CommitException.Content" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim Speichern deiner Spende. Bitte versuche es erneut oder wende dich an den Administrator.</value>
+  </data>
+  <data name="OverviewPage_FetchException.Content" xml:space="preserve">
+    <value>Wir konnten keine Spenden laden. Bitte versuche es erneut oder wende dich an den Administator.</value>
+  </data>
 </root>

@@ -173,8 +173,7 @@ namespace ml.Doki.ViewModels
             }
             catch(HttpRequestException httpRequestException)
             {
-                await new MessageDialog("There was an error while committing your donation. " +
-                    "Please try again or contact your system administrator for further assistance").ShowAsync();
+                await new MessageDialog("DonatePage_CommitException/Content".GetLocalized()).ShowAsync();
             }
             finally
             {
@@ -224,6 +223,9 @@ namespace ml.Doki.ViewModels
 
         private async void ChooseFromContacts()
         {
+            if (IsLoading)
+                return;
+
             var contact = await Singleton<ContactService>.Instance.PromptUserForContactAsync();
 
             if(contact != null)

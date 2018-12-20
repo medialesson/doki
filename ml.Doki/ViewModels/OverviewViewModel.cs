@@ -135,12 +135,10 @@ namespace ml.Doki.ViewModels
             }
             catch(HttpRequestException httpRequestException)
             {
-                await new MessageDialog("We were not able to fetch all donations. " +
-                    "Please contact the system administrator for assistance.").ShowAsync();
+                await new MessageDialog("OverviewPage_FetchException/Content".GetLocalized()).ShowAsync();
             }
             finally
             {
-                await Task.Delay(200);
                 IsLoading = false;
             }
         }
