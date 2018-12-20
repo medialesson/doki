@@ -235,4 +235,10 @@ Fork us on [GitHub](https://github.com/medialesson/doki-uwp).</value>
 - Enter a set of reasons that describe your cause
 - This text field can be styled with Markdown</value>
   </data>
+  <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
+    <value>GET endpoint</value>
+  </data>
+  <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
+    <value>POST endpoint</value>
+  </data>
 </root>
