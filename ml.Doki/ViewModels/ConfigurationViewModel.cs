@@ -9,10 +9,6 @@ namespace ml.Doki.ViewModels
 {
     public class ConfigurationViewModel : Observable
     {
-        #region Resource
-        private ResourceLoader Resource { get; }
-        #endregion
-
         #region Properties
         private string _aboutText;
         public string AboutText
@@ -71,9 +67,6 @@ namespace ml.Doki.ViewModels
 
         public ConfigurationViewModel()
         {
-            // Set resource manager
-            Resource = ResourceLoader.GetForCurrentView();
-
             // Set commands
             LoadCommand = new RelayCommand(Load);
             SaveCommand = new RelayCommand(Save);
@@ -108,7 +101,7 @@ namespace ml.Doki.ViewModels
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
             await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
 
-            await new MessageDialog(Resource.GetString("ConfigurationPage_SaveDialog/Description")).ShowAsync();
+            await new MessageDialog("ConfigurationPage_SaveDialog/Description".GetLocalized()).ShowAsync();
         }
     }
 }

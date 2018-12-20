@@ -8,16 +8,20 @@ namespace ml.Doki.ViewModels
 {
     public class AboutViewModel : Observable
     {
+        #region Properties
         private string _aboutText;
         public string AboutText
         {
             get { return _aboutText; }
             set { Set(ref _aboutText, value); }
         }
+        #endregion
 
+        #region Commands
         public ICommand LoadCommand { get; }
 
         public ICommand MarkdownLinkClickedCommand { get; }
+        #endregion
 
         public AboutViewModel()
         {

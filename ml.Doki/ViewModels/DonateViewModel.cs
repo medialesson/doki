@@ -22,10 +22,6 @@ namespace ml.Doki.ViewModels
 {
     public class DonateViewModel : Observable
     {
-        #region Resource
-        private ResourceLoader Resource { get; }
-        #endregion
-
         #region Properties
         private ImageSource _currentDonatorImageSource;
         public ImageSource CurrentDonatorImageSource
@@ -97,9 +93,6 @@ namespace ml.Doki.ViewModels
 
         public DonateViewModel()
         {
-            // Set resource manager
-            Resource = ResourceLoader.GetForCurrentView();
-
             // Set properties
             DonationNameAutoSuggestList = new ObservableCollection<string>();
             FetchCurrencyPlaceholder();
@@ -120,8 +113,8 @@ namespace ml.Doki.ViewModels
             // Do validation
             if (!IsInputValid())
             {
-                var dialog = new MessageDialog(Resource.GetString("DonatePage_DonateValidationDialog/Description"),
-                    Resource.GetString("DonatePage_DonateValidationDialog/Title"));
+                var dialog = new MessageDialog("DonatePage_DonateValidationDialog/Description".GetLocalized(),
+                    "DonatePage_DonateValidationDialog/Title".GetLocalized());
                 await dialog.ShowAsync();
                 return;
             }
@@ -145,7 +138,7 @@ namespace ml.Doki.ViewModels
             {
                 Content = new DonationConfirmationPage(),
 
-                PrimaryButtonText = Resource.GetString("DonatePage_DonateConfirmationDialog/PrimaryButtonText"),
+                PrimaryButtonText = "DonatePage_DonateConfirmationDialog/PrimaryButtonText".GetLocalized(),
                 DefaultButton = ContentDialogButton.Primary
             };
 
@@ -212,10 +205,10 @@ namespace ml.Doki.ViewModels
                 {
                     Content = configurationPage,
 
-                    PrimaryButtonText = Resource.GetString("DonatePage_OpenConfigurationsDialog/PrimaryButtonText"),
+                    PrimaryButtonText = "DonatePage_OpenConfigurationsDialog/PrimaryButtonText".GetLocalized(),
                     PrimaryButtonCommand = configurationPage.ViewModel.SaveCommand,
 
-                    CloseButtonText = Resource.GetString("DonatePage_OpenConfigurationsDialog/CloseButtonText"),
+                    CloseButtonText = "DonatePage_OpenConfigurationsDialog/CloseButtonText".GetLocalized(),
 
                     DefaultButton = ContentDialogButton.Primary
                 };
