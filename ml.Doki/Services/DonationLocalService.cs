@@ -12,7 +12,7 @@ namespace ml.Doki.Services
 {
     public class DonationLocalService : IDonationService
     {
-        public async Task DonateAsync(Donation donation)
+        public async Task StoreDonationsAsync(IList<Donation> donations)
         {
             StorageFolder localStorage = ApplicationData.Current.LocalFolder;
             StorageFile donationStorageFile = null;
@@ -25,13 +25,18 @@ namespace ml.Doki.Services
                 donationStorageFile = await localStorage.CreateFileAsync("donations.json");
             }
 
-            var donations = await GetAllDonationsAsync();
-            donations.Add(donation);
-
             var donationsData = JsonConvert.SerializeObject(donations);
             await FileIO.WriteTextAsync(donationStorageFile, donationsData);
 
             Analytics.TrackEvent("DonationLocalService.CommitDonation");
+        }
+
+        public async Task DonateAsync(Donation donation)
+        {
+            var donations = await GetAllDonationsAsync();
+            donations.Add(donation);
+
+            await StoreDonationsAsync(donations);
         }
 
         public async Task<IList<Donation>> GetAllDonationsAsync()

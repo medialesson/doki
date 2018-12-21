@@ -280,4 +280,7 @@ Bitte versuche es erneut, oder wende dich an den Administator.</value>
   <data name="DeviceSecurity_ChallengeWindowsHelloRequest.Description" xml:space="preserve">
     <value>Stellen wir sicher, ob du berechtigt bist Änderungen zu machen.</value>
   </data>
+  <data name="ConfigurationPage_LocalData.Header" xml:space="preserve">
+    <value>Lokaler Tabellenspeicher</value>
+  </data>
 </root>
