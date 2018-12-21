@@ -10,12 +10,12 @@ namespace ml.Doki.Services
 {
     public class DonationService : IDonationService
     {
-        DonationFakeService fakeService;
+        DonationLocalService localService;
         DonationRemoteService remoteService;
 
         public DonationService()
         {
-            fakeService = Singleton<DonationFakeService>.Instance;
+            localService = Singleton<DonationLocalService>.Instance;
             remoteService = Singleton<DonationRemoteService>.Instance;
         }
 
@@ -25,7 +25,7 @@ namespace ml.Doki.Services
             {
                 if (Singleton<Settings>.Instance.IsApiEnabled)
                     return remoteService;
-                return fakeService;
+                return localService;
             }
         }
     
