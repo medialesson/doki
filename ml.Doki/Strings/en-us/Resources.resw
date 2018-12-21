@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>ml.Doki</value>
+    <value>Doki</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>ml.Doki</value>
+    <value>Doki (donation kiosk) is a standalone companion app for your lonely piggy-bank and was built for teams who want to keep track of their income.</value>
     <comment>Application description</comment>
   </data>
   <data name="PivotPage_Donate.Header" xml:space="preserve">
@@ -268,5 +268,14 @@ Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
   </data>
   <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
     <value>Enable API</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloError.Description" xml:space="preserve">
+    <value>Make sure Windows Hello has been already set up first.</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloError.Title" xml:space="preserve">
+    <value>You are not authorized</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloRequest.Description" xml:space="preserve">
+    <value>Let's make sure you're authorized to make changes</value>
   </data>
 </root>

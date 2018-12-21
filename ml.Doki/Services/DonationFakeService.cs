@@ -14,25 +14,25 @@ namespace ml.Doki.Services
             new Donation
             {
                 FullName = "Samuel Oechsler",
-                Amount = 3.5M,
+                Amount = 3.5m,
                 DonatedAt = DateTime.Now
             },
             new Donation
             {
                 FullName = "Samuel Oechsler",
-                Amount = 4.3M,
+                Amount = 4.3m,
                 DonatedAt = DateTime.Now
             },
             new Donation
             {
                 FullName = "Melissa Mast",
-                Amount = 5,
+                Amount = 5m,
                 DonatedAt = DateTime.Now
             },
             new Donation
             {
                 FullName = "Gino Messmer",
-                Amount = 100,
+                Amount = 10m,
                 DonatedAt = DateTime.Now - TimeSpan.FromDays(35)
             },
         };

@@ -136,7 +136,7 @@ namespace ml.Doki.ViewModels
                 IsLoading = true;
 
                 // Donate
-                await Singleton<DonationRemoteService>.Instance.DonateAsync(new Donation
+                await Singleton<DonationService>.Instance.DonateAsync(new Donation
                 {
                     FullName = CurrentDonationName,
                     Amount = decimal.Parse(CurrentDonationAmount, NumberStyles.Currency, Singleton<Settings>.Instance.ApplicationCultureInfo),
@@ -155,18 +155,23 @@ namespace ml.Doki.ViewModels
                 {
                     Content = new DonationConfirmationPage(),
 
-                PrimaryButtonText = "DonatePage_DonateConfirmationDialog/PrimaryButtonText".GetLocalized(),
-                DefaultButton = ContentDialogButton.Primary
-            };
+                    PrimaryButtonText = "DonatePage_DonateConfirmationDialog/PrimaryButtonText".GetLocalized(),
+                    DefaultButton = ContentDialogButton.Primary
+                };
 
                 await confirmationDialog.ShowAsync();
 
                 // Navigate to overview page
                 Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
             }
-            catch(HttpRequestException httpRequestException)
+            catch(HttpRequestException ex)
             {
                 await new MessageDialog("DonatePage_CommitException/Content".GetLocalized()).ShowAsync();
+
+                Analytics.TrackEvent("Donate.CommitException", new Dictionary<string, string>
+                {
+                    {"message", ex.Message}
+                });
             }
             finally
             {
@@ -229,8 +234,10 @@ namespace ml.Doki.ViewModels
 
         public async void OpenConfigurations()
         {
+#if !DEBUG
             if (await DeviceSecurity.ChallengeWindowsHelloAsync())
             {
+#endif
                 var configurationPage = new ConfigurationPage();
                 var dialog = new ContentDialog
                 {
@@ -247,7 +254,13 @@ namespace ml.Doki.ViewModels
                 await dialog.ShowAsync();
 
                 Analytics.TrackEvent("Donate.OpenConfiguration");
+#if !DEBUG
             }
+            else
+            {
+                Analytics.TrackEvent("Donate.OpenConfigurationUnauthorized");
+            }
+#endif
         }
 
         public async void PopulateAutoSuggestNames()
