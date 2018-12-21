@@ -183,7 +183,7 @@ Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
     <value>Spendengrund (siehe Über)</value>
   </data>
   <data name="ConfigurationPage_ContentCurrencyLocal.Header" xml:space="preserve">
-    <value>Currency local</value>
+    <value>Währungseinheit (nach Ländercode)</value>
   </data>
   <data name="ConfigurationPage_SaveDialog.Description" xml:space="preserve">
     <value>Einstellungen wurden übernommen.</value>
@@ -231,7 +231,7 @@ Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
     <value>insgesamt</value>
   </data>
   <data name="OverviewPage_RefreshButton.Label" xml:space="preserve">
-    <value>Aktualisieren</value>
+    <value>Erneut laden</value>
   </data>
   <data name="OverviewPage_SelectDonatorDialog.PrimaryButtonText" xml:space="preserve">
     <value>Schließen</value>
@@ -252,7 +252,7 @@ Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
 - Das Textfeld kann in Markdown geschrieben werden</value>
   </data>
   <data name="ConfigurationPage_ApiGetEndpoint.Header" xml:space="preserve">
-    <value>Bezugs Endpunkt</value>
+    <value>Auflistungs Endpunkt</value>
   </data>
   <data name="ConfigurationPage_ApiPostEndpoint.Header" xml:space="preserve">
     <value>Speicher Endpunkt</value>
@@ -261,12 +261,26 @@ Lizensiert unter [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
     <value>{0}.{1} Build {2}</value>
   </data>
   <data name="DonatePage_CommitException.Content" xml:space="preserve">
-    <value>Ein Fehler ist aufgetreten beim Speichern deiner Spende. Bitte versuche es erneut oder wende dich an den Administrator.</value>
+    <value>Ein Fehler ist aufgetreten beim Speichern deiner Spende.
+Bitte versuche es erneut, oder wende dich an den Administrator.</value>
   </data>
   <data name="OverviewPage_FetchException.Content" xml:space="preserve">
-    <value>Wir konnten keine Spenden laden. Bitte versuche es erneut oder wende dich an den Administator.</value>
+    <value>Es konnten keine Spenden geladen werden. 
+Bitte versuche es erneut, oder wende dich an den Administator.</value>
   </data>
   <data name="ConfigurationPage_ApiCheckbox.Content" xml:space="preserve">
     <value>API verwenden</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloError.Description" xml:space="preserve">
+    <value>Bitte stelle sicher, dass Windows Hello richtig eingerichtet wurde.</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloError.Title" xml:space="preserve">
+    <value>Du bist nicht berechtigt</value>
+  </data>
+  <data name="DeviceSecurity_ChallengeWindowsHelloRequest.Description" xml:space="preserve">
+    <value>Stellen wir sicher, ob du berechtigt bist Änderungen zu machen.</value>
+  </data>
+  <data name="ConfigurationPage_LocalData.Header" xml:space="preserve">
+    <value>Lokaler Tabellenspeicher</value>
   </data>
 </root>

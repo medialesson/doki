@@ -15,12 +15,13 @@
     </Page.Resources>
     <Grid x:Name="ContentArea" Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <ScrollViewer>
-            <StackPanel Margin="{ThemeResource XSmallTopMargin}">
+            <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <!-- TODO: Move to settings -->
-                <StackPanel Margin="{ThemeResource XXSmallTopMargin}"
+                <StackPanel Margin="{StaticResource XXSmallTopMargin}"
                             Visibility="{x:Bind ViewModel.AboutText, Converter={StaticResource stringToVisibilityConverter}, Mode=OneWay}">
                     <controls:MarkdownTextBlock Text="{Binding AboutText, Mode=OneWay}"
-                                                Margin="{ThemeResource MediumBottomMargin}">
+                                                IsTextSelectionEnabled="false"
+                                                Margin="{StaticResource MediumBottomMargin}">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="LinkClicked">
                                 <core:InvokeCommandAction Command="{Binding MarkdownLinkClickedCommand}"></core:InvokeCommandAction>
@@ -31,19 +32,20 @@
 
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                                    VerticalAlignment="Bottom"
                                    Text="{Binding AppDisplayName}"/>
-                        <TextBlock Style="{ThemeResource CaptionSubtitleStyle}"
+                        <TextBlock Style="{StaticResource CaptionSubtitleStyle}"
                                    Text="{Binding AppVersion}"
                                    VerticalAlignment="Bottom"
-                                   Margin="{ThemeResource TextSpaceLeftMargin}"
+                                   Margin="{StaticResource TextSpaceLeftMargin}"
                                    Padding="0,0,0,2"/>
                     </StackPanel>
                     <TextBlock Text="{Binding AppDescription}"
                                TextWrapping="WrapWholeWords"
-                               Margin="{ThemeResource XXSmallTopMargin}"/>
+                               Margin="{StaticResource XXSmallTopMargin}"/>
                     <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
+                                                IsTextSelectionEnabled="false"
                                                 x:Uid="AboutPage_DevsDescription">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="LinkClicked">
@@ -53,9 +55,11 @@
                     </controls:MarkdownTextBlock>
                 </StackPanel>
 
-                <StackPanel Margin="{ThemeResource MediumTopMargin}">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" x:Uid="AboutPage_Licenses"/>
-                    <controls:MarkdownTextBlock Margin="{ThemeResource XXSmallTopMargin}"
+                <StackPanel Margin="{StaticResource MediumTopMargin}">
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
+                               x:Uid="AboutPage_Licenses"/>
+                    <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
+                                                IsTextSelectionEnabled="false"
                                                 x:Uid="AboutPage_LicensesDescription">
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="LinkClicked">
