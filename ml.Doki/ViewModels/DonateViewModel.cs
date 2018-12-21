@@ -234,7 +234,7 @@ namespace ml.Doki.ViewModels
 
         public async void OpenConfigurations()
         {
-#if !DEBUG
+#if !DEBUG || !NOAUTH
             if (await DeviceSecurity.ChallengeWindowsHelloAsync())
             {
 #endif
@@ -254,7 +254,7 @@ namespace ml.Doki.ViewModels
                 await dialog.ShowAsync();
 
                 Analytics.TrackEvent("Donate.OpenConfiguration");
-#if !DEBUG
+#if !DEBUG || !NOAUTH
             }
             else
             {
