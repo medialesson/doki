@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
-  <Identity Name="ED289A18-2285-4E78-BE42-4BC39BFE8C30" Publisher="CN=GinoMessmer" Version="1.0.0.0" />
+  <Identity Name="ED289A18-2285-4E78-BE42-4BC39BFE8C30" Publisher="CN=GinoMessmer" Version="1.0.3.0" />
   <mp:PhoneIdentity PhoneProductId="ED289A18-2285-4E78-BE42-4BC39BFE8C30" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ml.Doki</DisplayName>

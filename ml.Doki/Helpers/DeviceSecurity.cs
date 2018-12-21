@@ -14,7 +14,7 @@ namespace ml.Doki.Helpers
         {
             if (await UserConsentVerifier.CheckAvailabilityAsync() == UserConsentVerifierAvailability.Available)
             {
-                var consentResult = await UserConsentVerifier.RequestVerificationAsync("DeviceSecurity_WindowsHelloRequest/Description".GetLocalized());
+                var consentResult = await UserConsentVerifier.RequestVerificationAsync("DeviceSecurity_ChallengeWindowsHelloRequest/Description".GetLocalized());
 
                 if (consentResult == UserConsentVerificationResult.Verified)
                 {
