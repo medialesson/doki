@@ -284,9 +284,16 @@ namespace ml.Doki.ViewModels
             var locale = Singleton<Settings>.Instance.ApplicationCultureName;
             var cultureInfo = new CultureInfo(locale);
 
-            var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault().ToList();
-            var averageMonthDonation = currentMonthDonations.Average(d => decimal.Parse(d.TotalAmount.ToString(), CultureInfo.CurrentUICulture));
-            CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
+            var currentMonthDonations = Singleton<OverviewViewModel>.Instance.DonatorsPerMonth.FirstOrDefault();
+            if (currentMonthDonations != null)
+            {
+                var averageMonthDonation = currentMonthDonations.ToList().Average(d => decimal.Parse(d.TotalAmount.ToString(), CultureInfo.CurrentUICulture));
+                CurrentDonationAmount = averageMonthDonation.ToString("F2", cultureInfo);
+            }
+            else
+            {
+                CurrentDonationAmount = CurrencyPlaceholder;
+            }
 
             Analytics.TrackEvent("Donate.AssignAverageAmount");
         }
