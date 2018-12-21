@@ -42,11 +42,11 @@
                                         <AddDeleteThemeTransition />
                                     </TransitionCollection>
                                 </StackPanel.Transitions>
-                                <TextBox Text="{Binding RemotePostEndpoint, Mode=TwoWay}"
+                                <TextBox Text="{Binding RemoteGetEndpoint, Mode=TwoWay}"
                                          InputScope="Url"
                                          Margin="{StaticResource SmallTopMargin}"
                                          x:Uid="ConfigurationPage_ApiGetEndpoint"/>
-                                <TextBox Text="{Binding RemoteGetEndpoint, Mode=TwoWay}"
+                                <TextBox Text="{Binding RemotePostEndpoint, Mode=TwoWay}"
                                          InputScope="Url"
                                          Margin="{StaticResource SmallTopMargin}"
                                          x:Uid="ConfigurationPage_ApiPostEndpoint"/>

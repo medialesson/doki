@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
 using ml.Doki.Models.Grouping;
@@ -74,7 +75,7 @@ namespace ml.Doki.ViewModels
             try
             {
                 // Load donations
-                var donations = await Singleton<DonationRemoteService>.Instance.GetAllDonationsAsync();
+                var donations = await Singleton<DonationService>.Instance.GetAllDonationsAsync();
 
                 // Get the donations created during this year
                 donations = donations.Where(d => d.DonatedAt.Year == DateTime.Now.Year).ToList();
@@ -126,9 +127,14 @@ namespace ml.Doki.ViewModels
                     DonatorsPerMonth.Add(new DonatorsPerMonthGroup(month.Key, currentMonthDonators));
                 }
             }
-            catch(HttpRequestException httpRequestException)
+            catch(HttpRequestException ex)
             {
                 await new MessageDialog("OverviewPage_FetchException/Content".GetLocalized()).ShowAsync();
+
+                Analytics.TrackEvent("Overwie.FetchException", new Dictionary<string, string>
+                {
+                    {"message", ex.Message}
+                });
             }
             finally
             {
@@ -148,7 +154,7 @@ namespace ml.Doki.ViewModels
             page.ViewModel.Donations = new ObservableCollection<Donation>();
 
             // Get all donations by person
-            var donations = (await Singleton<DonationRemoteService>.Instance.GetAllDonationsAsync())
+            var donations = (await Singleton<DonationService>.Instance.GetAllDonationsAsync())
                 .Where(d => d.FullName == SelectedDonator.FullName);
             donations.ToList().ForEach(d => page.ViewModel.Donations.Add(d));
 
@@ -168,8 +174,10 @@ namespace ml.Doki.ViewModels
                 PrimaryButtonCommand = new RelayCommand(() => SelectedDonator = null),
                 DefaultButton = ContentDialogButton.Primary
             };
-
+            
             await dialog.ShowAsync();
+
+            Analytics.TrackEvent("Overview.SelectDonator");
         }
     }
 }

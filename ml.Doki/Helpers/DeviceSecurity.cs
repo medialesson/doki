@@ -14,7 +14,7 @@ namespace ml.Doki.Helpers
         {
             if (await UserConsentVerifier.CheckAvailabilityAsync() == UserConsentVerifierAvailability.Available)
             {
-                var consentResult = await UserConsentVerifier.RequestVerificationAsync("Let's make sure you're authorized to make changes");
+                var consentResult = await UserConsentVerifier.RequestVerificationAsync("DeviceSecurity_WindowsHelloRequest/Description".GetLocalized());
 
                 if (consentResult == UserConsentVerificationResult.Verified)
                 {
@@ -24,7 +24,8 @@ namespace ml.Doki.Helpers
 
 
             // Fallback
-            var dialog = new MessageDialog("Make sure Windows Hello has been already set up first.", "You are not authorized");
+            var dialog = new MessageDialog("DeviceSecurity_ChallengeWindowsHelloError/Description".GetLocalized(),
+                "DeviceSecurity_ChallengeWindowsHelloError/Title".GetLocalized());
 
             await dialog.ShowAsync();
             return false;

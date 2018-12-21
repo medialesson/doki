@@ -145,6 +145,8 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\DonationFakeService.cs" />
+    <Compile Include="Services\DonationLocalService.cs" />
+    <Compile Include="Services\DonationService.cs" />
     <Compile Include="Services\DonationRemoteService.cs" />
     <Compile Include="Services\IDonationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
