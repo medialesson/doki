@@ -278,4 +278,7 @@ Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
   <data name="DeviceSecurity_ChallengeWindowsHelloRequest.Description" xml:space="preserve">
     <value>Let's make sure you're authorized to make changes</value>
   </data>
+  <data name="ConfigurationPage_LocalData.Header" xml:space="preserve">
+    <value>Local table storage</value>
+  </data>
 </root>

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ml.Doki.Helpers;
 using ml.Doki.Models;
+using ml.Doki.Services;
+using Newtonsoft.Json;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 
@@ -50,6 +54,13 @@ namespace ml.Doki.ViewModels
             set => Set(ref _isApiEnabled, value);
         }
 
+        private string _localData;
+        public string LocalData
+        {
+            get => _localData;
+            set => Set(ref _localData, value);
+        }
+
 
         private string _remoteGetEndpoint;
         public string RemoteGetEndpoint
@@ -94,6 +105,7 @@ namespace ml.Doki.ViewModels
 
             AppCenterId = Singleton<Settings>.Instance.AppCenterId;
             IsApiEnabled = Singleton<Settings>.Instance.IsApiEnabled;
+            LocalData = JsonConvert.SerializeObject(await Singleton<DonationLocalService>.Instance.GetAllDonationsAsync(), Formatting.Indented);
             RemoteGetEndpoint = Singleton<Settings>.Instance.RemoteGetEndpoint;
             RemotePostEndpoint = Singleton<Settings>.Instance.RemotePostEndpoint;
         }
@@ -105,6 +117,11 @@ namespace ml.Doki.ViewModels
 
             await Singleton<Settings>.Instance.SetAppCenterIdAsync(this.AppCenterId);
             await Singleton<Settings>.Instance.SetApiIsEnabledAsync(this.IsApiEnabled);
+            try
+            {
+                await Singleton<DonationLocalService>.Instance.StoreDonationsAsync(JsonConvert.DeserializeObject<IList<Donation>>(LocalData));
+            }
+            catch (Exception) { }
             await Singleton<Settings>.Instance.SetRemoteEndpointsAsync(this.RemoteGetEndpoint, this.RemotePostEndpoint);
 
             // Reload all singleton view models
