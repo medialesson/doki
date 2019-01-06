@@ -27,6 +27,11 @@
                     <views:OverviewPage/>
                 </Frame>
             </PivotItem>
+            <PivotItem x:Uid="PivotItem_Expenses">
+                <Frame>
+                    <views:ExpensesPage/>
+                </Frame>
+            </PivotItem>
             <PivotItem x:Uid="PivotPage_About">
                 <Frame>
                     <views:AboutPage/>
