@@ -50,6 +50,8 @@ namespace ml.Doki.ViewModels
         public ICommand LoadCommand { get; }
 
         public ICommand SelectDonatorCommand { get; set; }
+
+        public ICommand ShowDonatePromptCommand { get; set; }
         #endregion
 
         public OverviewViewModel()
@@ -61,6 +63,7 @@ namespace ml.Doki.ViewModels
             // Set commands
             LoadCommand = new RelayCommand(Load);
             SelectDonatorCommand = new RelayCommand<ItemClickEventArgs>(SelectDonator);
+            ShowDonatePromptCommand = new RelayCommand(ShowDonatePrompt);
 
             LoadCommand.Execute(null);
         }
@@ -178,6 +181,24 @@ namespace ml.Doki.ViewModels
             await dialog.ShowAsync();
 
             Analytics.TrackEvent("Overview.SelectDonator");
+        }
+
+        public async void ShowDonatePrompt()
+        {
+            var page = new DonatePage();
+            page.ViewModel.IsDonationButtonVisible = false;
+            var dialog = new ContentDialog
+            {
+                PrimaryButtonText = "OverviewPage_ShowDonatePrompt/PrimaryButtonText".GetLocalized(),
+                PrimaryButtonCommand = page.ViewModel.DonateCommand,
+
+                SecondaryButtonText = "OverviewPage_ShowDonatePrompt/SecondaryButtonText".GetLocalized(),
+
+                DefaultButton = ContentDialogButton.Primary,
+                Content = page
+            };
+
+            await dialog.ShowAsync();
         }
     }
 }

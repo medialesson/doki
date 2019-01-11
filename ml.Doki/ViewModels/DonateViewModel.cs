@@ -82,6 +82,14 @@ namespace ml.Doki.ViewModels
             get => _isLoading;
             set => Set(ref _isLoading, value);
         }
+
+
+        private bool _isDonationButtonVisible = true;
+        public bool IsDonationButtonVisible
+        {
+            get => _isDonationButtonVisible;
+            set => Set(ref _isDonationButtonVisible, value);
+        }
         #endregion
 
         #region Commands

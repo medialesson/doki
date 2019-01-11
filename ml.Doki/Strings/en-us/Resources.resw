@@ -281,4 +281,10 @@ Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
   <data name="ConfigurationPage_LocalData.Header" xml:space="preserve">
     <value>Local table storage</value>
   </data>
+  <data name="OverviewPage_ShowDonatePrompt.PrimaryButtonText" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="OverviewPage_ShowDonatePrompt.SecondaryButtonText" xml:space="preserve">
+    <value>Abort</value>
+  </data>
 </root>

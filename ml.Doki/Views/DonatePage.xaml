@@ -12,6 +12,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BoolNegationConverter x:Key="boolNegationConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
     </Page.Resources>
     <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
@@ -109,7 +110,8 @@
             <Button Command="{Binding DonateCommand}"
                     Style="{ThemeResource AccentButtonStyle}"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource boolNegationConverter}, Mode=OneWay}"
-                    Height="60" HorizontalAlignment="Stretch">
+                    Height="60" HorizontalAlignment="Stretch"
+                    Visibility="{Binding IsDonationButtonVisible, Converter={StaticResource boolToVisibilityConverter}}">
                 <Button.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Command="{Binding OpenConfigurationsCommand}" x:Uid="DonatePage_SettingsMenuFlyoutItem">
