@@ -12,6 +12,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BoolNegationConverter x:Key="boolNegationConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
     </Page.Resources>
     <Grid Margin="{StaticResource XSmallLeftTopRightBottomMargin}">
         <Grid.RowDefinitions>
@@ -28,7 +29,7 @@
                         <SolidColorBrush Color="{StaticResource SystemBaseLowColor}"/>
                     </Grid.Background>
                     <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="PointerPressed">
+                        <core:EventTriggerBehavior EventName="Tapped">
                             <core:InvokeCommandAction Command="{Binding ChooseFromContactsCommand}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
@@ -52,6 +53,16 @@
                             <ImageBrush ImageSource="{Binding CurrentDonatorImageSource, Mode=OneWay}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
+
+                    <Grid.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Command="{Binding OpenConfigurationsCommand}" x:Uid="DonatePage_SettingsMenuFlyoutItem">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Setting"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </Grid.ContextFlyout>
                 </Grid>
 
                 <AutoSuggestBox Text="{Binding CurrentDonationName, Mode=TwoWay}"
@@ -109,16 +120,8 @@
             <Button Command="{Binding DonateCommand}"
                     Style="{ThemeResource AccentButtonStyle}"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource boolNegationConverter}, Mode=OneWay}"
-                    Height="60" HorizontalAlignment="Stretch">
-                <Button.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Command="{Binding OpenConfigurationsCommand}" x:Uid="DonatePage_SettingsMenuFlyoutItem">
-                            <MenuFlyoutItem.Icon>
-                                <SymbolIcon Symbol="Setting"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
-                </Button.ContextFlyout>
+                    Height="60" HorizontalAlignment="Stretch"
+                    Visibility="{Binding IsDonationButtonVisible, Converter={StaticResource boolToVisibilityConverter}}">
                 <SymbolIcon Symbol="Forward"/>
             </Button>
         </Grid>

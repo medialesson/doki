@@ -92,10 +92,15 @@
 
         <Grid Grid.Row="1">
             <CommandBar Style="{StaticResource CommandBarTransparent}">
-                <AppBarButton Icon="Refresh"
-                              Command="{Binding LoadCommand}"
-                              IsEnabled="{Binding IsLoading, Converter={StaticResource invertBooleanConverter}, Mode=OneWay}"
-                              x:Uid="OverviewPage_RefreshButton"/>
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Icon="Refresh"
+                                  Command="{Binding LoadCommand}"
+                                  IsEnabled="{Binding IsLoading, Converter={StaticResource invertBooleanConverter}, Mode=OneWay}"
+                                  x:Uid="OverviewPage_RefreshButton"/>
+                </CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Add"
+                              Command="{Binding ShowDonatePromptCommand}"
+                              IsEnabled="{Binding IsLoading, Converter={StaticResource invertBooleanConverter}, Mode=OneWay}"/>
             </CommandBar>
         </Grid>
     </Grid>

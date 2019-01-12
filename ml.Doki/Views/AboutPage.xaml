@@ -56,6 +56,16 @@
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource MediumTopMargin}">
+                    <HyperlinkButton x:Uid="AboutPage_SettingsLink">
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction Command="{Binding OpenConfigurationsCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </HyperlinkButton>
+                </StackPanel>
+
+                <StackPanel Margin="{StaticResource MediumTopMargin}">
                     <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
                                x:Uid="AboutPage_Licenses"/>
                     <controls:MarkdownTextBlock Margin="{StaticResource XXSmallTopMargin}"
