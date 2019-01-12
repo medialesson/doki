@@ -6,8 +6,6 @@ namespace ml.Doki.ViewModels
 {
     public class PivotViewModel : Observable
     {
-        public const int OverviewPagePivotIndex = 1;
-
         #region Properties
         private int _selectedPivotIndex;
 
@@ -16,11 +14,6 @@ namespace ml.Doki.ViewModels
 
         public PivotViewModel()
         {
-        }
-
-        public void SelectOverviewPivot()
-        {
-            SelectedPivotIndex = OverviewPagePivotIndex;
         }
     }
 }

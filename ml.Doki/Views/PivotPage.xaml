@@ -17,11 +17,11 @@
             <i:Interaction.Behaviors>
                 <behaviors:PivotBehavior />
             </i:Interaction.Behaviors>
-            <PivotItem x:Uid="PivotPage_Donate">
+            <!--<PivotItem x:Uid="PivotPage_Donate">
                 <Frame>
                     <views:DonatePage/>
                 </Frame>
-            </PivotItem>
+            </PivotItem>-->
             <PivotItem x:Uid="PivotPage_Overview">
                 <Frame>
                     <views:OverviewPage/>

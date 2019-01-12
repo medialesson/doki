@@ -130,7 +130,7 @@
     <comment>Pivot item header for Donate</comment>
   </data>
   <data name="PivotPage_Overview.Header" xml:space="preserve">
-    <value>Overview</value>
+    <value>Ledger</value>
     <comment>Pivot item header for Overview</comment>
   </data>
   <data name="PivotPage_About.Header" xml:space="preserve">
@@ -286,5 +286,8 @@ Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
   </data>
   <data name="OverviewPage_ShowDonatePrompt.SecondaryButtonText" xml:space="preserve">
     <value>Abort</value>
+  </data>
+  <data name="AboutPage_SettingsLink.Content" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

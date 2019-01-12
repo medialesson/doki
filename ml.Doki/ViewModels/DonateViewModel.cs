@@ -102,8 +102,6 @@ namespace ml.Doki.ViewModels
 
         public ICommand ChooseFromContactsCommand { get; }
 
-        public ICommand OpenConfigurationsCommand { get; }
-
         public ICommand PopulateAutoSuggestNamesCommand { get; }
 
         public ICommand FocusNextElementCommand { get; }
@@ -122,7 +120,6 @@ namespace ml.Doki.ViewModels
             DonateCommand = new RelayCommand(Donate);
             FetchAvatarCommand = new RelayCommand<string>(AssignAvatarByName);
             ChooseFromContactsCommand = new RelayCommand(ChooseFromContacts);
-            OpenConfigurationsCommand = new RelayCommand(OpenConfigurations);
             PopulateAutoSuggestNamesCommand = new RelayCommand(PopulateAutoSuggestNames);
             FocusNextElementCommand = new RelayCommand(FocusNextElement);
             FetchAverageDonationAmountCommand = new RelayCommand(AssignAverageDonationAmount);
@@ -168,9 +165,6 @@ namespace ml.Doki.ViewModels
                 };
 
                 await confirmationDialog.ShowAsync();
-
-                // Navigate to overview page
-                Singleton<PivotViewModel>.Instance.SelectOverviewPivot();
             }
             catch(HttpRequestException ex)
             {
@@ -238,37 +232,6 @@ namespace ml.Doki.ViewModels
                 AssignViewByContact(contact);
 
             Analytics.TrackEvent("Donate.ChooseContact");
-        }
-
-        public async void OpenConfigurations()
-        {
-#if !DEBUG || !NOAUTH
-            if (await DeviceSecurity.ChallengeWindowsHelloAsync())
-            {
-#endif
-                var configurationPage = new ConfigurationPage();
-                var dialog = new ContentDialog
-                {
-                    Content = configurationPage,
-
-                    PrimaryButtonText = "DonatePage_OpenConfigurationsDialog/PrimaryButtonText".GetLocalized(),
-                    PrimaryButtonCommand = configurationPage.ViewModel.SaveCommand,
-
-                    CloseButtonText = "DonatePage_OpenConfigurationsDialog/CloseButtonText".GetLocalized(),
-
-                    DefaultButton = ContentDialogButton.Primary
-                };
-
-                await dialog.ShowAsync();
-
-                Analytics.TrackEvent("Donate.OpenConfiguration");
-#if !DEBUG || !NOAUTH
-            }
-            else
-            {
-                Analytics.TrackEvent("Donate.OpenConfigurationUnauthorized");
-            }
-#endif
         }
 
         public async void PopulateAutoSuggestNames()
