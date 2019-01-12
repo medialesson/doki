@@ -291,3 +291,8 @@ Lizensiert under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/)</valu
     <value>Settings</value>
   </data>
 </root>
+  <data name="PivotItem_Expenses.Header" xml:space="preserve">
+    <value>Expenses</value>
+    <comment>Pivot item header for Expenses</comment>
+  </data>
+</root>
